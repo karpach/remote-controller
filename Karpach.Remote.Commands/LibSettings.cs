@@ -8,44 +8,63 @@ using SharpConfig;
 namespace Karpach.Remote.Commands
 {
     public class LibSettings
-    {
-        public readonly List<WakeOnLanCommandSettings> WakeOnLanCommandSettings = new List<WakeOnLanCommandSettings>();
-        private readonly Configuration _configuration;
-        private readonly string _path = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Karpach.Remote.Commands.ini";
+    {                
+        private static readonly string DefaultPath = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Karpach.Remote.Commands.ini";
+        private readonly string _path;
 
-        public LibSettings()
+        private readonly Dictionary<Guid,object> _objects = new Dictionary<Guid, object>();
+
+        public LibSettings():this(DefaultPath)
         {
-            _configuration = File.Exists(_path) ? Configuration.LoadFromFile(_path) : new Configuration();
-            foreach (Section section in _configuration)
-            {                
-                if (section.Name.StartsWith("WakeOnLanCommandSettings"))
-                {
-                    WakeOnLanCommandSettings.Add(section.ToObject<WakeOnLanCommandSettings>());
-                }
+        }
+
+        public LibSettings(string path)
+        {
+            _path = path;
+            Configuration configuration = File.Exists(_path) ? Configuration.LoadFromFile(_path) : new Configuration();            
+            foreach (Section section in configuration)
+            {
+                _objects[section["Id"].GetValue<Guid>()] = section.ToObject(Type.GetType(section.Name));                
             }
         }
 
-        public void Save()
+        public object this[Guid id]
         {
-            bool[] updated = new bool[WakeOnLanCommandSettings.Count];
-            foreach (Section section in _configuration)
+            get => _objects.ContainsKey(id) ? _objects[id] : null;
+            set
             {
-                if (section.Name.StartsWith("WakeOnLanCommandSettings"))
-                {
-                    Guid id = section["Id"].GetValue<Guid>();
-                    int index = WakeOnLanCommandSettings.FindIndex(s => s.Id == id);                    
-                    if (index >= 0)
-                    {                               
-                        section.GetValuesFrom(WakeOnLanCommandSettings[index]);
-                        updated[index] = true;
-                    }                    
-                }
+                _objects[id] = value; 
+                _save();
             }
-            foreach (int index in updated.Where(u=>!u).Select((u,i)=>i))
+        }
+
+        public bool Remove(Guid id)
+        {
+            if (!_objects.ContainsKey(id))
+            {
+                return false;
+            }
+            bool result = _objects.Remove(id);
+            _save();
+            return result;
+        }
+
+        public int Length => _objects.Keys.Count;
+            
+        public T[] GetValues<T>()
+        {
+            return _objects.Values.OfType<T>().ToArray();
+        }
+
+
+        private void _save()
+        {
+            var configuration = new Configuration();            
+            foreach (object obj in _objects.Values)
             {                                
-                _configuration.Add(Section.FromObject($"WakeOnLanCommandSettings{index}", WakeOnLanCommandSettings[index]));
+                configuration.Add(Section.FromObject(obj.GetType().ToString(), obj));
             }
-            _configuration.SaveToFile(_path);
+            configuration.SaveToFile(_path);
         }
     }
 }

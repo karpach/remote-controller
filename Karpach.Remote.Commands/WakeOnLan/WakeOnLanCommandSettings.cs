@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Karpach.Remote.Commands
+namespace Karpach.Remote.Commands.WakeOnLan
 {
     public class WakeOnLanCommandSettings
     {

@@ -89,6 +89,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandSettignsTests.cs" />
     <Compile Include="HostHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +102,6 @@
       <Project>{6916CA57-9E37-48FE-B16C-44965008BEBD}</Project>
       <Name>Karpach.Remote.Commander</Name>
     </ProjectReference>
-  </ItemGroup>  
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />  
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

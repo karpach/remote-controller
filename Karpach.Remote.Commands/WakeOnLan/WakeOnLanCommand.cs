@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Windows.Forms;
 using Karpach.Remote.Commands.Interfaces;
 
-namespace Karpach.Remote.Commands
+namespace Karpach.Remote.Commands.WakeOnLan
 {    
     public class WakeOnLanCommand: IRemoteCommand
     {
         private readonly LibSettings _libSettings = new LibSettings();
         private readonly WakeOnLanCommandSettings _settings;
         private bool _configured;
+        private const string NotConfigured = "Not Configured";
 
         public Guid Id => _settings.Id;
 
-        public int Index { get; set; }
-
-        public string CommandTitle => $"Wake-On-Lan - {_settings.PcName}";
+        public string CommandTitle =>  $"Wake-On-Lan - { (_configured ? _settings.PcName : NotConfigured )}";
 
         public bool Configured => _configured;
 
@@ -27,11 +25,24 @@ namespace Karpach.Remote.Commands
 
         public string AssemblyName => Assembly.GetExecutingAssembly().GetName().Name;
 
-        public WakeOnLanCommand()
+        public WakeOnLanCommand():this(null)
+        {            
+        }
+
+        private WakeOnLanCommand(Guid? id)
         {
-            _settings = _libSettings.WakeOnLanCommandSettings.Count > Index
-                ? _libSettings.WakeOnLanCommandSettings[Index]
-                : new WakeOnLanCommandSettings { Id = Guid.NewGuid() };
+            if (id.HasValue)
+            {                
+                WakeOnLanCommandSettings settings = _libSettings[id.Value] as WakeOnLanCommandSettings;
+                _configured = settings != null;
+                _settings = settings ?? new WakeOnLanCommandSettings { Id = id.Value };                
+            }
+            else
+            {                
+                WakeOnLanCommandSettings[] allSettings = _libSettings.GetValues<WakeOnLanCommandSettings>();
+                _configured = allSettings.Length > 0;
+                _settings = _configured ? allSettings[0] : new WakeOnLanCommandSettings { Id = Guid.NewGuid() };
+            }                        
         }
 
         public void RunCommand(object sender, EventArgs e)
@@ -77,18 +88,19 @@ namespace Karpach.Remote.Commands
             DialogResult result = dlg.ShowDialog();
             if (result == DialogResult.OK)
             {
-                if (_libSettings.WakeOnLanCommandSettings.All(s => s.Id != Id))
-                {
-                    _libSettings.WakeOnLanCommandSettings.Add(dlg.Settings);
-                }
-                _configured = true;
-                _libSettings.Save();
+                _libSettings[Id] = dlg.Settings;                
+                _configured = true;                
             }
         }
 
-        public IRemoteCommand Create(int index)
+        public IRemoteCommand Create(Guid id)
         {
-            return new WakeOnLanCommand { Index = index};
+            return new WakeOnLanCommand(id);
+        }
+
+        public bool Delete()
+        {
+            return _libSettings.Remove(Id);
         }
 
         public bool CanCreate()

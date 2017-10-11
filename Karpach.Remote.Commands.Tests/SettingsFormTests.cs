@@ -1,4 +1,5 @@
 ﻿using Karpach.Remote.Commands;
+using Karpach.Remote.Commands.WakeOnLan;
 using Moq;
 using Moq.AutoMock;
 using NUnit.Framework;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace Karpach.Remote.Commander
         public bool AutoStart => chkAutoLoad.Checked;
         public int Port => int.Parse(txtRemotePort.Text);
         public string SecretCode => txtSecretCode.Text;
-        private BindingList<IRemoteCommand> _commands;
+        private CommandsManager _commands;
 
         public SettingsForm()
         {
@@ -23,9 +24,9 @@ namespace Karpach.Remote.Commander
             dgvCommands.AutoGenerateColumns = false;
         }
 
-        public void InitialiazeCommands(IRemoteCommand[] commands)
+        public void InitialiazeCommands(CommandsManager commands)
         {
-            _commands = new BindingList<IRemoteCommand>(commands.ToList()) { AllowNew = true };
+            _commands = commands;
             dgvCommands.DataSource = _commands;
         }
 
@@ -45,15 +46,17 @@ namespace Karpach.Remote.Commander
             {
                 DataGridViewButtonColumn button = senderGrid.Columns[e.ColumnIndex] as DataGridViewButtonColumn;
                 if (button.Name == "btnEdit")
-                {
+                {                    
                     _commands[e.RowIndex].ShowSettings();
+                    _commands.ResetItem(e.RowIndex);
                 }
                 if (button.Name == "btnAdd")
                 {
-                    _commands.Add(_commands[e.RowIndex].Create(_commands.Count));                    
+                    _commands.Add(_commands[e.RowIndex].Create(Guid.NewGuid()));                    
                 }
                 if (button.Name == "btnRemove")
-                {                    
+                {      
+                    _commands.Remove(_commands[e.RowIndex]);
                 }
             }
         }

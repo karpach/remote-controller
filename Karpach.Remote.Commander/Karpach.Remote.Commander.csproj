@@ -152,6 +152,9 @@
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
+      <HintPath>..\packages\sharpconfig.3.2.0\lib\net20\SharpConfig.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
@@ -249,9 +252,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandsManager.cs" />
+    <Compile Include="CommandsSettings.cs" />
     <Compile Include="ControllerApplicationContext.cs" />
     <Compile Include="Helpers\HostHelper.cs" />
+    <Compile Include="Helpers\TypeHelpers.cs" />
+    <Compile Include="Interfaces\ICommandsSettings.cs" />
     <Compile Include="Interfaces\IHostHelper.cs" />
+    <Compile Include="Models\Command.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">

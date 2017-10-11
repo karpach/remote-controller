@@ -16,11 +16,10 @@ namespace Karpach.Remote.Commander
     {        
         private readonly SettingsForm _settingsForm;
         private readonly IHostHelper _hostHelper;
-        private readonly NotifyIcon _trayIcon;        
-        private readonly ToolStripMenuItem _commandButton;        
-        private List<IRemoteCommand> _commands;
+        private readonly NotifyIcon _trayIcon;                
+        private readonly CommandsManager _commandsManager;
 
-        public ControllerApplicationContext(SettingsForm settingsForm, IHostHelper hostHelper)
+        public ControllerApplicationContext(SettingsForm settingsForm, IHostHelper hostHelper, ICommandsSettings commandsSettings)
         {
             var catalog = new AggregateCatalog();
 
@@ -35,22 +34,39 @@ namespace Karpach.Remote.Commander
             
             var container = new CompositionContainer(catalog);
 
-            _commands = new List<IRemoteCommand>(container.GetExportedValues<IRemoteCommand>());
-            _commands.AddRange(container.GetExportedValues<IRemoteCommandContainer>().SelectMany(commands => commands));
-            settingsForm.InitialiazeCommands(_commands.ToArray());
+            var commands = new List<IRemoteCommand>(container.GetExportedValues<IRemoteCommand>());
+            commands.AddRange(container.GetExportedValues<IRemoteCommandContainer>().SelectMany(c => c));            
+            _commandsManager = new CommandsManager(commands, commandsSettings);
+            settingsForm.InitialiazeCommands(_commandsManager);
             
             _settingsForm = settingsForm;
-            _hostHelper = hostHelper;
+            _hostHelper = hostHelper;                        
+
+            // Initialize Tray Icon            
+            _trayIcon = new NotifyIcon
+            {
+                Icon = Resources.AppIcon,
+                ContextMenuStrip = GetContextMenuStrip(),
+                Visible = true
+            };
+
+            _hostHelper.SecretCode = Settings.Default.SecretCode;            
+            _hostHelper.CreateHostAsync(Settings.Default.RemotePort);
+        }
+
+        private ContextMenuStrip GetContextMenuStrip()
+        {
             var notifyContextMenu = new ContextMenuStrip();
 
-            foreach (IRemoteCommand command in _commands)
+            foreach (IRemoteCommand command in _commandsManager)
             {
                 var commandButton = new ToolStripMenuItem(command.CommandTitle)
                 {
-                    Image = command.TrayIcon                };
+                    Image = command.TrayIcon
+                };
                 commandButton.Click += command.RunCommand;
                 notifyContextMenu.Items.Add(commandButton);
-            }            
+            }
 
             notifyContextMenu.Items.Add("-");
 
@@ -70,23 +86,14 @@ namespace Karpach.Remote.Commander
             exit.Click += Exit;
             notifyContextMenu.Items.Add(exit);
 
-
-            // Initialize Tray Icon            
-            _trayIcon = new NotifyIcon
-            {
-                Icon = Resources.AppIcon,
-                ContextMenuStrip = notifyContextMenu,
-                Visible = true
-            };
-
-            _hostHelper.SecretCode = Settings.Default.SecretCode;            
-            _hostHelper.CreateHostAsync(Settings.Default.RemotePort);
+            return notifyContextMenu;
         }
 
         private void SettingsClick(object sender, EventArgs e)
         {            
             if (_settingsForm.ShowDialog() == DialogResult.OK)
             {
+                _trayIcon.ContextMenuStrip = GetContextMenuStrip();
                 if (Settings.Default.RemotePort != _settingsForm.Port)
                 {
                     _hostHelper.CreateHostAsync(_settingsForm.Port);

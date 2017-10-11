@@ -8,12 +8,7 @@ namespace Karpach.Remote.Commands.Interfaces
         /// <summary>
         /// Unique identifier for the command
         /// </summary>
-        Guid Id { get; }
-
-        /// <summary>
-        /// Index of the same type command
-        /// </summary>
-        int Index { get; set; }
+        Guid Id { get; }        
 
         /// <summary>
         /// Title of the command
@@ -54,15 +49,17 @@ namespace Karpach.Remote.Commands.Interfaces
 
         /// <summary>
         /// Creates new command of the same type
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        IRemoteCommand Create(int index);
+        /// </summary> 
+        /// <param name="id">Command Id</param>       
+        /// <returns>Command</returns>
+        IRemoteCommand Create(Guid id);
 
         /// <summary>
         /// True if it is possible to create another command of the same type
         /// </summary>
         /// <returns></returns>
         bool CanCreate();
+
+        bool Delete();
     }
 }

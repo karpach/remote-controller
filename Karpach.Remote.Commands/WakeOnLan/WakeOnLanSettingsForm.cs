@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Karpach.Remote.Commands
+namespace Karpach.Remote.Commands.WakeOnLan
 {
     public partial class WakeOnLanSettingsForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Karpach.Remote.Commands
+﻿namespace Karpach.Remote.Commands.WakeOnLan
 {
     partial class WakeOnLanSettingsForm
     {
