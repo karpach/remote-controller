@@ -19,8 +19,7 @@ namespace Karpach.Remote.Commander
             IEnumerable<IRemoteCommand> remoteCommands = commands as IRemoteCommand[] ?? commands.ToArray();
             List<IRemoteCommand> clonedCommands = new List<IRemoteCommand>();
             foreach (IRemoteCommand command in remoteCommands)
-            {
-                _commandsSettings.Add(command.GetType(), command.Id);
+            {                
                 Guid[] ids = commandsSettings.GetCommandIds(command.GetType());
                 foreach (Guid id in ids)
                 {
@@ -51,7 +50,7 @@ namespace Karpach.Remote.Commander
                 return -1;
             }
             var command = (IRemoteCommand)item;
-            _commands.Add(command);
+            _commands.Add(command);            
             _commandsSettings.Add(item.GetType(), command.Id);
             ListChanged?.Invoke(this, new ListChangedEventArgs(ListChangedType.ItemAdded, _commands.Count-1));
             return _commands.Count - 1;

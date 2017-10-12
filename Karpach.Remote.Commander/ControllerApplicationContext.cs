@@ -57,18 +57,24 @@ namespace Karpach.Remote.Commander
         private ContextMenuStrip GetContextMenuStrip()
         {
             var notifyContextMenu = new ContextMenuStrip();
-
+            bool hasConfiguredCommands = false;
             foreach (IRemoteCommand command in _commandsManager)
             {
-                var commandButton = new ToolStripMenuItem(command.CommandTitle)
+                if (command.Configured)
                 {
-                    Image = command.TrayIcon
-                };
-                commandButton.Click += command.RunCommand;
-                notifyContextMenu.Items.Add(commandButton);
+                    var commandButton = new ToolStripMenuItem(command.CommandTitle)
+                    {
+                        Image = command.TrayIcon
+                    };
+                    commandButton.Click += command.RunCommand;
+                    notifyContextMenu.Items.Add(commandButton);
+                    hasConfiguredCommands = true;
+                }                
             }
-
-            notifyContextMenu.Items.Add("-");
+            if (hasConfiguredCommands)
+            {
+                notifyContextMenu.Items.Add("-");
+            }            
 
             var settings = new ToolStripMenuItem("Settings")
             {
