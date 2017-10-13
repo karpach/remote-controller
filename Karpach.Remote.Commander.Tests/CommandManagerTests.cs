@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Karpach.Remote.Commander.Interfaces;
 using Karpach.Remote.Commands.Interfaces;
 using Moq;
@@ -55,7 +56,30 @@ namespace Karpach.Remote.Commander.Tests
             _commandManager = new CommandsManager(_commands, _commandSettings.Object);
 
             // Assert            
-            Assert.AreEqual(2, _commandManager.Count);
+            Assert.AreEqual(ids.Length, _commandManager.Count);
+        }
+
+        [Test]
+        public void Add_Test()
+        {
+            // Arrange     
+            Mock<IRemoteCommand> command = new Mock<IRemoteCommand>();
+            Guid[] ids = { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
+            command.Setup(c => c.Id).Returns(ids[0]);
+            _commands.AddRange(new[]
+            {
+                command.Object
+            });
+            _commandSettings.Setup(s => s.GetCommandIds(It.IsAny<Type>())).Returns(ids.Take(2).ToArray);
+            Mock<IRemoteCommand> newCommand = new Mock<IRemoteCommand>();
+            newCommand.Setup(c => c.Id).Returns(ids[ids.Length-1]);
+
+            // Act               
+            _commandManager = new CommandsManager(_commands, _commandSettings.Object);
+            _commandManager.Add(newCommand.Object);
+
+            // Assert            
+            Assert.AreEqual(ids.Length, _commandManager.Count);
         }
     }
 }
