@@ -257,6 +257,7 @@
     <Compile Include="ControllerApplicationContext.cs" />
     <Compile Include="Helpers\HostHelper.cs" />
     <Compile Include="Helpers\TypeHelpers.cs" />
+    <Compile Include="Interfaces\ICommandsManager.cs" />
     <Compile Include="Interfaces\ICommandsSettings.cs" />
     <Compile Include="Interfaces\IHostHelper.cs" />
     <Compile Include="Models\Command.cs" />

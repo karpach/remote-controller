@@ -8,10 +8,12 @@ using System.ComponentModel;
 
 namespace Karpach.Remote.Commander
 {
-    public class CommandsManager: IBindingList
+    public class CommandsManager: ICommandsManager
     {
         private readonly ICommandsSettings _commandsSettings;
         private readonly List<IRemoteCommand> _commands;       
+
+        public delegate CommandsManager Factory(IEnumerable<IRemoteCommand> commands, ICommandsSettings commandsSettings);
 
         public CommandsManager(IEnumerable<IRemoteCommand> commands, ICommandsSettings commandsSettings)
         {
@@ -190,5 +192,11 @@ namespace Karpach.Remote.Commander
         public PropertyDescriptor SortProperty => null;
         public ListSortDirection SortDirection => ListSortDirection.Ascending;
         public event ListChangedEventHandler ListChanged;
+
+        public void RunCommand(Guid id)
+        {
+            IRemoteCommand command = _commands.FirstOrDefault(c => c.Id == id);
+            command?.RunCommand(this, new EventArgs());
+        }
     }
 }

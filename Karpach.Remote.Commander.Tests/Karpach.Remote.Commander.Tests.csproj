@@ -89,6 +89,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandManagerTests.cs" />
     <Compile Include="CommandSettignsTests.cs" />
     <Compile Include="HostHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +102,10 @@
     <ProjectReference Include="..\Karpach.Remote.Commander\Karpach.Remote.Commander.csproj">
       <Project>{6916CA57-9E37-48FE-B16C-44965008BEBD}</Project>
       <Name>Karpach.Remote.Commander</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj">
+      <Project>{749A1018-4B45-4FB9-8FA7-72C1F40FD884}</Project>
+      <Name>Karpach.Remote.Commands.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

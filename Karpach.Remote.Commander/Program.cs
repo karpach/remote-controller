@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Autofac;
+using Autofac.Builder;
 using Karpach.Remote.Commander.Helpers;
 using Karpach.Remote.Commander.Interfaces;
 
@@ -19,8 +20,10 @@ namespace Karpach.Remote.Commander
             var builder = new ContainerBuilder();            
             builder.RegisterType<ControllerApplicationContext>().AsSelf();
             builder.RegisterType<SettingsForm>().AsSelf();
-            builder.RegisterType<HostHelper>().As<IHostHelper>();
+            builder.RegisterType<HostHelper>();
             builder.RegisterType<CommandsSettings>().As<ICommandsSettings>();
+            builder.RegisterType<CommandsManager>();                   
+            builder.RegisterType<SettingsForm>();
             Container = builder.Build();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

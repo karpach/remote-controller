@@ -15,18 +15,20 @@ namespace Karpach.Remote.Commander.Helpers
     {     
         private CancellationTokenSource _cancellationTokenSource;
         private Task _hostTask;
-        private CommandsManager _commandsManager;
+        private ICommandsManager _commandsManager;
 
-        public string SecretCode { get; set; }        
+        public string SecretCode { get; set; }
 
-        public HostHelper()
-        {            
+        public delegate HostHelper Factory(ICommandsManager commandsManager);
+
+        public HostHelper(ICommandsManager commandsManager)
+        {
+            _commandsManager = commandsManager;
             _cancellationTokenSource = new CancellationTokenSource();
         }
 
-        public async Task CreateHostAsync(CommandsManager commandsManager, int port)
-        {
-            _commandsManager = commandsManager;
+        public async Task CreateHostAsync(int port)
+        {            
             if (_hostTask != null)
             {
                 _cancellationTokenSource.Cancel();
@@ -74,8 +76,7 @@ namespace Karpach.Remote.Commander.Helpers
             Guid id;
             if (Guid.TryParse(commandId, out id))
             {
-                IRemoteCommand command = _commandsManager.Cast<IRemoteCommand>().FirstOrDefault(c => c.Id == id);
-                command?.RunCommand(this, new EventArgs());
+                _commandsManager.RunCommand(id);
             }
         }
     }

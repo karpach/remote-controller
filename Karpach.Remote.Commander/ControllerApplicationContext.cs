@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using Karpach.Remote.Commander.Helpers;
 using Karpach.Remote.Commander.Interfaces;
 using Karpach.Remote.Commander.Properties;
 using Microsoft.Win32;
@@ -19,7 +20,7 @@ namespace Karpach.Remote.Commander
         private readonly NotifyIcon _trayIcon;                
         private readonly CommandsManager _commandsManager;
 
-        public ControllerApplicationContext(SettingsForm settingsForm, IHostHelper hostHelper, ICommandsSettings commandsSettings)
+        public ControllerApplicationContext(SettingsForm.Factory settingsFormFactory, HostHelper.Factory hostHelperFactory, ICommandsSettings commandsSettings, CommandsManager.Factory commandManagerFactory)
         {
             var catalog = new AggregateCatalog();
 
@@ -36,11 +37,9 @@ namespace Karpach.Remote.Commander
 
             var commands = new List<IRemoteCommand>(container.GetExportedValues<IRemoteCommand>());
             commands.AddRange(container.GetExportedValues<IRemoteCommandContainer>().SelectMany(c => c));            
-            _commandsManager = new CommandsManager(commands, commandsSettings);
-            settingsForm.InitialiazeCommands(_commandsManager);
-            
-            _settingsForm = settingsForm;
-            _hostHelper = hostHelper;                        
+            _commandsManager = commandManagerFactory.Invoke(commands, commandsSettings);                        
+            _settingsForm = settingsFormFactory.Invoke(_commandsManager);
+            _hostHelper = hostHelperFactory.Invoke(_commandsManager);                        
 
             // Initialize Tray Icon            
             _trayIcon = new NotifyIcon
@@ -51,7 +50,7 @@ namespace Karpach.Remote.Commander
             };
 
             _hostHelper.SecretCode = Settings.Default.SecretCode;            
-            _hostHelper.CreateHostAsync(_commandsManager, Settings.Default.RemotePort);
+            _hostHelper.CreateHostAsync(Settings.Default.RemotePort);
         }
 
         private ContextMenuStrip GetContextMenuStrip()
@@ -102,7 +101,7 @@ namespace Karpach.Remote.Commander
                 _trayIcon.ContextMenuStrip = GetContextMenuStrip();
                 if (Settings.Default.RemotePort != _settingsForm.Port)
                 {
-                    _hostHelper.CreateHostAsync(_commandsManager, _settingsForm.Port);
+                    _hostHelper.CreateHostAsync(_settingsForm.Port);
                 }
                 if (Settings.Default.AutoStart != _settingsForm.AutoStart)
                 {
