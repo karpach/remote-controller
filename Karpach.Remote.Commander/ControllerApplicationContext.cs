@@ -51,7 +51,7 @@ namespace Karpach.Remote.Commander
             };
 
             _hostHelper.SecretCode = Settings.Default.SecretCode;            
-            _hostHelper.CreateHostAsync(Settings.Default.RemotePort);
+            _hostHelper.CreateHostAsync(_commandsManager, Settings.Default.RemotePort);
         }
 
         private ContextMenuStrip GetContextMenuStrip()
@@ -102,7 +102,7 @@ namespace Karpach.Remote.Commander
                 _trayIcon.ContextMenuStrip = GetContextMenuStrip();
                 if (Settings.Default.RemotePort != _settingsForm.Port)
                 {
-                    _hostHelper.CreateHostAsync(_settingsForm.Port);
+                    _hostHelper.CreateHostAsync(_commandsManager, _settingsForm.Port);
                 }
                 if (Settings.Default.AutoStart != _settingsForm.AutoStart)
                 {

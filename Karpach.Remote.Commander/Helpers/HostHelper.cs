@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using Karpach.Remote.Commander.Interfaces;
+using Karpach.Remote.Commands.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +15,7 @@ namespace Karpach.Remote.Commander.Helpers
     {     
         private CancellationTokenSource _cancellationTokenSource;
         private Task _hostTask;
+        private CommandsManager _commandsManager;
 
         public string SecretCode { get; set; }        
 
@@ -20,8 +24,9 @@ namespace Karpach.Remote.Commander.Helpers
             _cancellationTokenSource = new CancellationTokenSource();
         }
 
-        public async Task CreateHostAsync(int port)
+        public async Task CreateHostAsync(CommandsManager commandsManager, int port)
         {
+            _commandsManager = commandsManager;
             if (_hostTask != null)
             {
                 _cancellationTokenSource.Cancel();
@@ -61,11 +66,17 @@ namespace Karpach.Remote.Commander.Helpers
                 return;
             }
             int lastSlashPosition = url.LastIndexOf("/", StringComparison.Ordinal);
-            string commandName = String.Empty;
+            string commandId = String.Empty;
             if (lastSlashPosition >= 0 && url.Length > 1)
             {
-                commandName = url.Substring(lastSlashPosition + 1);
-            }            
+                commandId = url.Substring(lastSlashPosition + 1);
+            }
+            Guid id;
+            if (Guid.TryParse(commandId, out id))
+            {
+                IRemoteCommand command = _commandsManager.Cast<IRemoteCommand>().FirstOrDefault(c => c.Id == id);
+                command?.RunCommand(this, new EventArgs());
+            }
         }
     }
 }
