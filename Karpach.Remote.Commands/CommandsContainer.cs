@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Karpach.Remote.Commands.Interfaces;
+using Karpach.Remote.Commands.LocalNetworkHttpRequest;
 using Karpach.Remote.Commands.WakeOnLan;
 
 namespace Karpach.Remote.Commands
@@ -15,7 +16,8 @@ namespace Karpach.Remote.Commands
         {
             _commands = new IRemoteCommand[]
             {
-                new WakeOnLanCommand()
+                new WakeOnLanCommand(),
+                new LocalNetworkHttpRequestCommand()
             };
         }
 

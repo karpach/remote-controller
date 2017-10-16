@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using Karpach.Remote.Commands;
-using Karpach.Remote.Commands.HttpRequest;
+using Karpach.Remote.Commands.LocalNetworkHttpRequest;
 using Karpach.Remote.Commands.WakeOnLan;
 using NUnit.Framework;
 
@@ -12,7 +12,7 @@ namespace Karpach.Remote.Commander.Tests
     public class LibSettingsTests
     {
         private WakeOnLanCommandSettings[] _wakeOnLanCommandSettings;
-        private HttpRequestSettings[] _httpRequestSettings;
+        private LocalNetworkHttpRequestSettings[] _localNetworkHttpRequestSettings;
 
         [SetUp]
         public void Setup()
@@ -35,13 +35,13 @@ namespace Karpach.Remote.Commander.Tests
                 },
             };
 
-            _httpRequestSettings = new [] {
-                new HttpRequestSettings
+            _localNetworkHttpRequestSettings = new [] {
+                new LocalNetworkHttpRequestSettings
                 {
                     Id = Guid.Parse("10000001-6D4F-4B9F-94FA-0FEE6C8A5F4A"),
                     Url = "Test1"
                 },
-                new HttpRequestSettings
+                new LocalNetworkHttpRequestSettings
                 {
                     Id = Guid.Parse("10000002-6D4F-4B9F-94FA-0FEE6C8A5F4A"),
                     Url = "Test2"
@@ -60,14 +60,14 @@ namespace Karpach.Remote.Commander.Tests
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
-                [_httpRequestSettings[0].Id] = _httpRequestSettings[0],
+                [_localNetworkHttpRequestSettings[0].Id] = _localNetworkHttpRequestSettings[0],
                 [_wakeOnLanCommandSettings[2].Id] = _wakeOnLanCommandSettings[2],
-                [_httpRequestSettings[1].Id] = _httpRequestSettings[1]
+                [_localNetworkHttpRequestSettings[1].Id] = _localNetworkHttpRequestSettings[1]
             };
 
             // Assert
-            Assert.AreEqual(settings.GetValues<WakeOnLanCommandSettings>().Length, 3);
-            Assert.AreEqual(settings.GetValues<HttpRequestSettings>().Length, 2);
+            Assert.AreEqual(settings.GetValues(typeof(WakeOnLanCommandSettings)).Length, 3);
+            Assert.AreEqual(settings.GetValues(typeof(LocalNetworkHttpRequestSettings)).Length, 2);
             Assert.AreEqual(settings.Length, 5);
             Console.WriteLine(File.ReadAllText(tempPath));
 
@@ -82,23 +82,23 @@ namespace Karpach.Remote.Commander.Tests
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
-                [_httpRequestSettings[0].Id] = _httpRequestSettings[0],
+                [_localNetworkHttpRequestSettings[0].Id] = _localNetworkHttpRequestSettings[0],
                 [_wakeOnLanCommandSettings[2].Id] = _wakeOnLanCommandSettings[2],
-                [_httpRequestSettings[1].Id] = _httpRequestSettings[1]
+                [_localNetworkHttpRequestSettings[1].Id] = _localNetworkHttpRequestSettings[1]
             };
 
             // Act
             var settings = new LibSettings(tempPath);
-            WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues<WakeOnLanCommandSettings>();
-            HttpRequestSettings[] httpRequestSettings = settings.GetValues<HttpRequestSettings>();
+            WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues(typeof(WakeOnLanCommandSettings)).Cast<WakeOnLanCommandSettings>().ToArray();
+            LocalNetworkHttpRequestSettings[] localNetworkHttpRequestSettings = settings.GetValues(typeof(LocalNetworkHttpRequestSettings)).Cast<LocalNetworkHttpRequestSettings>().ToArray();
 
             // Assert
             Assert.AreEqual(initSettings.Length, 5);
             Assert.AreEqual(wakeOnLanCommandSettings.Length, 3);
-            Assert.AreEqual(httpRequestSettings.Length, 2);
+            Assert.AreEqual(localNetworkHttpRequestSettings.Length, 2);
             Assert.AreEqual(settings.Length, 5);
             Assert.True(wakeOnLanCommandSettings.All(p=>!string.IsNullOrEmpty(p.PcName)));            
-            Assert.True(httpRequestSettings.All(p => !string.IsNullOrEmpty(p.Url)));
+            Assert.True(localNetworkHttpRequestSettings.All(p => !string.IsNullOrEmpty(p.Url)));
             WakeOnLanCommandSettings wakeOnLanCommandSetting = settings[wakeOnLanCommandSettings[0].Id] as WakeOnLanCommandSettings;
             Assert.IsNotNull(wakeOnLanCommandSetting);
             Assert.AreEqual(wakeOnLanCommandSettings[0].Id, wakeOnLanCommandSetting.Id);
@@ -114,24 +114,24 @@ namespace Karpach.Remote.Commander.Tests
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
-                [_httpRequestSettings[0].Id] = _httpRequestSettings[0],
+                [_localNetworkHttpRequestSettings[0].Id] = _localNetworkHttpRequestSettings[0],
                 [_wakeOnLanCommandSettings[2].Id] = _wakeOnLanCommandSettings[2],
-                [_httpRequestSettings[1].Id] = _httpRequestSettings[1]
+                [_localNetworkHttpRequestSettings[1].Id] = _localNetworkHttpRequestSettings[1]
             };
 
             // Act
             initSettings.Remove(_wakeOnLanCommandSettings[1].Id);
             var settings = new LibSettings(tempPath);            
-            WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues<WakeOnLanCommandSettings>();
-            HttpRequestSettings[] httpRequestSettings = settings.GetValues<HttpRequestSettings>();
+            WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues(typeof(WakeOnLanCommandSettings)).Cast<WakeOnLanCommandSettings>().ToArray();
+            LocalNetworkHttpRequestSettings[] localNetworkHttpRequestSettings = settings.GetValues(typeof(LocalNetworkHttpRequestSettings)).Cast<LocalNetworkHttpRequestSettings>().ToArray();
 
             // Assert
             Assert.AreEqual(initSettings.Length, 4);
             Assert.AreEqual(wakeOnLanCommandSettings.Length, 2);
-            Assert.AreEqual(httpRequestSettings.Length, 2);
+            Assert.AreEqual(localNetworkHttpRequestSettings.Length, 2);
             Assert.AreEqual(settings.Length, 4);
             Assert.True(wakeOnLanCommandSettings.All(p => !string.IsNullOrEmpty(p.PcName)));            
-            Assert.True(httpRequestSettings.All(p => !string.IsNullOrEmpty(p.Url)));
+            Assert.True(localNetworkHttpRequestSettings.All(p => !string.IsNullOrEmpty(p.Url)));
             WakeOnLanCommandSettings wakeOnLanCommandSetting = settings[wakeOnLanCommandSettings[1].Id] as WakeOnLanCommandSettings;
             Assert.IsNotNull(wakeOnLanCommandSetting);
             Assert.AreEqual(wakeOnLanCommandSettings[1].Id, wakeOnLanCommandSetting.Id);

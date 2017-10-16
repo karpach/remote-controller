@@ -54,6 +54,9 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
       <HintPath>..\packages\sharpconfig.3.2.0\lib\net20\SharpConfig.dll</HintPath>
     </Reference>
@@ -77,13 +80,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandsContainer.cs" />
-    <Compile Include="HttpRequest\HttpRequestSettings.cs" />
+    <Compile Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestCommand.cs" />
+    <Compile Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettings.cs" />
     <Compile Include="LibSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CommandSettingsBase.cs" />
+    <Compile Include="CommandBase.cs" />
+    <Compile Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettingsForm.Designer.cs">
+      <DependentUpon>LocalNetworkHttpRequestSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WakeOnLan\WakeOnLanCommandSettings.cs" />
     <Compile Include="WakeOnLan\WakeOnLanSettingsForm.cs">
@@ -102,6 +114,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettingsForm.resx">
+      <DependentUpon>LocalNetworkHttpRequestSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WakeOnLan\WakeOnLanSettingsForm.resx">
       <DependentUpon>WakeOnLanSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +129,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

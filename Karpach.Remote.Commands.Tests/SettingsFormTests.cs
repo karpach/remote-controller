@@ -1,7 +1,4 @@
-﻿using Karpach.Remote.Commands;
-using Karpach.Remote.Commands.WakeOnLan;
-using Moq;
-using Moq.AutoMock;
+﻿using Karpach.Remote.Commands.WakeOnLan;
 using NUnit.Framework;
 
 namespace Karpach.Remote.Commander.Tests

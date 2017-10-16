@@ -2,52 +2,30 @@
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Windows.Forms;
 using Karpach.Remote.Commands.Interfaces;
 
 namespace Karpach.Remote.Commands.WakeOnLan
-{    
-    public class WakeOnLanCommand: IRemoteCommand
-    {
-        private readonly LibSettings _libSettings = new LibSettings();
-        private readonly WakeOnLanCommandSettings _settings;
-        private bool _configured;
-        private const string NotConfigured = "Not Configured";
+{
+    public class WakeOnLanCommand: CommandBase
+    {                   
+        public override string CommandTitle =>  $"Wake-On-Lan - { (ConfiguredValue ? ((WakeOnLanCommandSettings)Settings).PcName : NotConfigured )}";
 
-        public Guid Id => _settings.Id;
+        public override Image TrayIcon => Resources.Lan.ToBitmap();
 
-        public string CommandTitle =>  $"Wake-On-Lan - { (_configured ? _settings.PcName : NotConfigured )}";
+        protected override Type SettingsType => typeof(WakeOnLanCommandSettings);
 
-        public bool Configured => _configured;
-
-        public Image TrayIcon => Resources.Lan.ToBitmap();
-
-        public string AssemblyName => Assembly.GetExecutingAssembly().GetName().Name;
-
-        public WakeOnLanCommand():this(null)
+        public WakeOnLanCommand():base(null)
         {            
         }
 
-        private WakeOnLanCommand(Guid? id)
-        {
-            if (id.HasValue)
-            {                
-                WakeOnLanCommandSettings settings = _libSettings[id.Value] as WakeOnLanCommandSettings;
-                _configured = settings != null;
-                _settings = settings ?? new WakeOnLanCommandSettings { Id = id.Value };                
-            }
-            else
-            {                
-                WakeOnLanCommandSettings[] allSettings = _libSettings.GetValues<WakeOnLanCommandSettings>();
-                _configured = allSettings.Length > 0;
-                _settings = _configured ? allSettings[0] : new WakeOnLanCommandSettings { Id = Guid.NewGuid() };
-            }                        
+        private WakeOnLanCommand(Guid id) : base(id)
+        {            
         }
 
-        public void RunCommand(object sender, EventArgs e)
+        public override void RunCommand(object sender, EventArgs e)
         {            
-            string macAddress = _settings?.MacAddress;                        
+            string macAddress = ((WakeOnLanCommandSettings)Settings)?.MacAddress;                        
 
             if (string.IsNullOrEmpty(macAddress))
             {
@@ -82,44 +60,20 @@ namespace Karpach.Remote.Commands.WakeOnLan
             client.Send(datagram, datagram.Length);
         }        
 
-        public void ShowSettings()
+        public override void ShowSettings()
         {            
-            var dlg = new WakeOnLanSettingsForm(_settings);
+            var dlg = new WakeOnLanSettingsForm((WakeOnLanCommandSettings)Settings);
             DialogResult result = dlg.ShowDialog();
             if (result == DialogResult.OK)
             {
-                _libSettings[Id] = dlg.Settings;                
-                _configured = true;                
+                LibSettings[Id] = dlg.Settings;                
+                ConfiguredValue = true;                
             }
         }
 
-        public IRemoteCommand Create(Guid id)
+        public override IRemoteCommand Create(Guid id)
         {
             return new WakeOnLanCommand(id);
-        }
-
-        public bool Delete()
-        {
-            return _libSettings.Remove(Id);
-        }
-
-        public bool CanCreate()
-        {
-            return true;
-        }
-
-        public string Version
-        {
-            get
-            {
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                object[] attributes = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
-                if (attributes.Length > 0 && attributes[0] is AssemblyFileVersionAttribute)
-                {
-                    return ((AssemblyFileVersionAttribute)attributes[0]).Version;
-                }
-                return "N/A";
-            }
         }        
     }
 }

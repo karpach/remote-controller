@@ -51,9 +51,9 @@ namespace Karpach.Remote.Commands
 
         public int Length => _objects.Keys.Count;
             
-        public T[] GetValues<T>()
+        public CommandSettingsBase[] GetValues(Type type)
         {
-            return _objects.Values.OfType<T>().ToArray();
+            return _objects.Values.Where(v => v.GetType() == type).Cast<CommandSettingsBase>().ToArray();
         }
 
 

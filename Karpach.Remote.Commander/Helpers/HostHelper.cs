@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Linq;
-using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using Karpach.Remote.Commander.Interfaces;
-using Karpach.Remote.Commands.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using NLog;
 
 namespace Karpach.Remote.Commander.Helpers
 {
     public class HostHelper : IHostHelper
-    {     
+    {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private CancellationTokenSource _cancellationTokenSource;
         private Task _hostTask;
-        private ICommandsManager _commandsManager;
+        private readonly ICommandsManager _commandsManager;
 
         public string SecretCode { get; set; }
 
@@ -76,6 +75,7 @@ namespace Karpach.Remote.Commander.Helpers
             Guid id;
             if (Guid.TryParse(commandId, out id))
             {
+                Logger.Info("{id} command is executed.");
                 _commandsManager.RunCommand(id);
             }
         }

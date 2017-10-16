@@ -23,13 +23,16 @@ namespace Karpach.Remote.Commander
             foreach (IRemoteCommand command in remoteCommands)
             {                
                 Guid[] ids = commandsSettings.GetCommandIds(command.GetType());
-                foreach (Guid id in ids)
+                if (ids != null)
                 {
-                    if (id != command.Id)
+                    foreach (Guid id in ids)
                     {
-                        clonedCommands.Add(command.Create(id));
-                    }                    
-                }
+                        if (id != command.Id)
+                        {
+                            clonedCommands.Add(command.Create(id));
+                        }
+                    }
+                }                
             }            
             _commands = new List<IRemoteCommand>(remoteCommands);
             _commands.AddRange(clonedCommands);
