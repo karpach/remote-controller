@@ -12,5 +12,5 @@ The program has following settings:
 
 Remote controller has following commands already implemented:
 1. WakeOnLanCommand
-2. LocalNetworkHttpRequestCommand (comming soon)
-3. RunWindowsExecutableCommand (comming soon)
+2. LocalNetworkHttpRequestCommand
+3. RunWindowsExecutableCommand

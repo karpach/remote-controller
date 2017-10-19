@@ -97,6 +97,14 @@
     <Compile Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettingsForm.Designer.cs">
       <DependentUpon>LocalNetworkHttpRequestSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.Designer.cs">
+      <DependentUpon>RunWindowsExecutableSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RunWindowsExecutable\RunWindowsExecutableCommand.cs" />
+    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettings.cs" />
     <Compile Include="WakeOnLan\WakeOnLanCommandSettings.cs" />
     <Compile Include="WakeOnLan\WakeOnLanSettingsForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +115,7 @@
     <Compile Include="WakeOnLan\WakeOnLanCommand.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\exe.ico" />
     <Content Include="Icons\lan.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LocalNetworkHttpRequest\LocalNetworkHttpRequestSettingsForm.resx">
       <DependentUpon>LocalNetworkHttpRequestSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.resx">
+      <DependentUpon>RunWindowsExecutableSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WakeOnLan\WakeOnLanSettingsForm.resx">
       <DependentUpon>WakeOnLanSettingsForm.cs</DependentUpon>
@@ -137,5 +149,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,7 +14,8 @@ namespace Karpach.Remote.Commands.LocalNetworkHttpRequest
             InitializeComponent();            
             Settings = settings;
             cbxPcName.Text = Settings.PcName;            
-            txtCommandName.Text = Settings.CommandName;            
+            txtCommandName.Text = Settings.CommandName;
+            txtUrl.Text = Settings.Url;
         }
 
         private void cbxPcName_DropDown(object sender, EventArgs e)

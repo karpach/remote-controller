@@ -27,8 +27,7 @@ namespace Karpach.Remote.Commands.LocalNetworkHttpRequest
 
         public override void RunCommand(object sender, EventArgs e)
         {
-            var settings = (LocalNetworkHttpRequestSettings)Settings;
-            HttpClient client = new HttpClient();
+            var settings = (LocalNetworkHttpRequestSettings)Settings;            
             if (string.IsNullOrEmpty(settings.PcName))
             {
                 Logger.Warn($"{settings.Id} Local Network Command no PC Name supplied.");
@@ -40,6 +39,7 @@ namespace Karpach.Remote.Commands.LocalNetworkHttpRequest
                 return;
             }
             string url = settings.Url.StartsWith("/") ? settings.Url.Substring(1) : settings.Url;
+            HttpClient client = new HttpClient();
             HttpResponseMessage message = client.GetAsync($"http://{settings.PcName}/{url}").ConfigureAwait(false).GetAwaiter().GetResult();
             if (message.StatusCode != HttpStatusCode.OK)
             {
