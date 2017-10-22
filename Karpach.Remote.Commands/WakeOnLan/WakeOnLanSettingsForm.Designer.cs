@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalNetworkHttpRequest.LocalNetworkHttpRequestSettingsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WakeOnLanSettingsForm));
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbPcName = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.btnOk.Location = new System.Drawing.Point(57, 107);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 0;
+            this.btnOk.TabIndex = 2;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -54,7 +54,7 @@
             this.btnCancel.Location = new System.Drawing.Point(138, 107);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -65,7 +65,7 @@
             this.lbPcName.Location = new System.Drawing.Point(29, 31);
             this.lbPcName.Name = "lbPcName";
             this.lbPcName.Size = new System.Drawing.Size(55, 13);
-            this.lbPcName.TabIndex = 1;
+            this.lbPcName.TabIndex = 0;
             this.lbPcName.Text = "PC Name:";
             // 
             // lbMacAddress
@@ -74,7 +74,7 @@
             this.lbMacAddress.Location = new System.Drawing.Point(12, 62);
             this.lbMacAddress.Name = "lbMacAddress";
             this.lbMacAddress.Size = new System.Drawing.Size(72, 13);
-            this.lbMacAddress.TabIndex = 1;
+            this.lbMacAddress.TabIndex = 0;
             this.lbMacAddress.Text = "Mac Address:";
             // 
             // cbxPcName
@@ -83,7 +83,7 @@
             this.cbxPcName.Location = new System.Drawing.Point(91, 28);
             this.cbxPcName.Name = "cbxPcName";
             this.cbxPcName.Size = new System.Drawing.Size(121, 21);
-            this.cbxPcName.TabIndex = 2;
+            this.cbxPcName.TabIndex = 0;
             this.cbxPcName.DropDown += new System.EventHandler(this.cbxPcName_DropDown);
             this.cbxPcName.SelectedValueChanged += new System.EventHandler(this.cbxPcName_Leave);
             this.cbxPcName.Leave += new System.EventHandler(this.cbxPcName_Leave);
@@ -93,7 +93,7 @@
             this.txtMacAddress.Location = new System.Drawing.Point(91, 62);
             this.txtMacAddress.Name = "txtMacAddress";
             this.txtMacAddress.Size = new System.Drawing.Size(121, 20);
-            this.txtMacAddress.TabIndex = 3;
+            this.txtMacAddress.TabIndex = 1;
             // 
             // WakeOnLanSettingsForm
             // 

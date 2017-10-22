@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices;
 using System.Windows.Forms;
 
 namespace Karpach.Remote.Commands.RunWindowsExecutable
@@ -14,13 +12,13 @@ namespace Karpach.Remote.Commands.RunWindowsExecutable
             InitializeComponent();            
             Settings = settings;             
             txtCommandName.Text = Settings.CommandName;
-            txtCommandName.Text = Settings.ExecutablePath;
+            txtExecutablePath.Text = Settings.ExecutablePath;
         }                    
 
         private void btnOk_Click(object sender, EventArgs e)
         {            
             Settings.CommandName = txtCommandName.Text;
-            Settings.ExecutablePath = txtUrl.Text;
+            Settings.ExecutablePath = txtExecutablePath.Text;
             Close();
         }
 

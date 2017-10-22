@@ -33,7 +33,7 @@
             this.lbCommandName = new System.Windows.Forms.Label();
             this.txtCommandName = new System.Windows.Forms.TextBox();
             this.lbExecutablePath = new System.Windows.Forms.Label();
-            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.txtExecutablePath = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -42,7 +42,7 @@
             this.btnOk.Location = new System.Drawing.Point(130, 100);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 0;
+            this.btnOk.TabIndex = 2;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -53,7 +53,7 @@
             this.btnCancel.Location = new System.Drawing.Point(211, 100);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -64,7 +64,7 @@
             this.lbCommandName.Location = new System.Drawing.Point(12, 22);
             this.lbCommandName.Name = "lbCommandName";
             this.lbCommandName.Size = new System.Drawing.Size(88, 13);
-            this.lbCommandName.TabIndex = 1;
+            this.lbCommandName.TabIndex = 0;
             this.lbCommandName.Text = "Command Name:";
             // 
             // txtCommandName
@@ -72,7 +72,7 @@
             this.txtCommandName.Location = new System.Drawing.Point(103, 22);
             this.txtCommandName.Name = "txtCommandName";
             this.txtCommandName.Size = new System.Drawing.Size(282, 20);
-            this.txtCommandName.TabIndex = 3;
+            this.txtCommandName.TabIndex = 0;
             // 
             // lbExecutablePath
             // 
@@ -80,22 +80,22 @@
             this.lbExecutablePath.Location = new System.Drawing.Point(12, 63);
             this.lbExecutablePath.Name = "lbExecutablePath";
             this.lbExecutablePath.Size = new System.Drawing.Size(88, 13);
-            this.lbExecutablePath.TabIndex = 1;
+            this.lbExecutablePath.TabIndex = 0;
             this.lbExecutablePath.Text = "Exectuable Path:";
             // 
-            // txtUrl
+            // txtExecutablePath
             // 
-            this.txtUrl.Location = new System.Drawing.Point(103, 60);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(284, 20);
-            this.txtUrl.TabIndex = 3;
+            this.txtExecutablePath.Location = new System.Drawing.Point(103, 60);
+            this.txtExecutablePath.Name = "txtExecutablePath";
+            this.txtExecutablePath.Size = new System.Drawing.Size(284, 20);
+            this.txtExecutablePath.TabIndex = 1;
             // 
             // RunWindowsExecutableSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 139);
-            this.Controls.Add(this.txtUrl);
+            this.Controls.Add(this.txtExecutablePath);
             this.Controls.Add(this.txtCommandName);
             this.Controls.Add(this.lbCommandName);
             this.Controls.Add(this.lbExecutablePath);
@@ -117,6 +117,6 @@
         private System.Windows.Forms.Label lbCommandName;
         private System.Windows.Forms.TextBox txtCommandName;
         private System.Windows.Forms.Label lbExecutablePath;
-        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.TextBox txtExecutablePath;
     }
 }

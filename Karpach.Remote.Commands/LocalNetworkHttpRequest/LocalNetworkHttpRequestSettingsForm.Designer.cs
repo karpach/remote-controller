@@ -45,7 +45,7 @@
             this.btnOk.Location = new System.Drawing.Point(130, 136);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 0;
+            this.btnOk.TabIndex = 3;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -56,7 +56,7 @@
             this.btnCancel.Location = new System.Drawing.Point(211, 136);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -67,7 +67,7 @@
             this.lbPcName.Location = new System.Drawing.Point(42, 60);
             this.lbPcName.Name = "lbPcName";
             this.lbPcName.Size = new System.Drawing.Size(55, 13);
-            this.lbPcName.TabIndex = 1;
+            this.lbPcName.TabIndex = 0;
             this.lbPcName.Text = "PC Name:";
             // 
             // lbCommandName
@@ -76,7 +76,7 @@
             this.lbCommandName.Location = new System.Drawing.Point(12, 22);
             this.lbCommandName.Name = "lbCommandName";
             this.lbCommandName.Size = new System.Drawing.Size(88, 13);
-            this.lbCommandName.TabIndex = 1;
+            this.lbCommandName.TabIndex = 0;
             this.lbCommandName.Text = "Command Name:";
             // 
             // cbxPcName
@@ -85,15 +85,15 @@
             this.cbxPcName.Location = new System.Drawing.Point(103, 57);
             this.cbxPcName.Name = "cbxPcName";
             this.cbxPcName.Size = new System.Drawing.Size(282, 21);
-            this.cbxPcName.TabIndex = 2;
-            this.cbxPcName.DropDown += new System.EventHandler(this.cbxPcName_DropDown);            
+            this.cbxPcName.TabIndex = 1;
+            this.cbxPcName.DropDown += new System.EventHandler(this.cbxPcName_DropDown);
             // 
             // txtCommandName
             // 
             this.txtCommandName.Location = new System.Drawing.Point(103, 22);
             this.txtCommandName.Name = "txtCommandName";
             this.txtCommandName.Size = new System.Drawing.Size(282, 20);
-            this.txtCommandName.TabIndex = 3;
+            this.txtCommandName.TabIndex = 0;
             // 
             // lbUrl
             // 
@@ -101,7 +101,7 @@
             this.lbUrl.Location = new System.Drawing.Point(65, 98);
             this.lbUrl.Name = "lbUrl";
             this.lbUrl.Size = new System.Drawing.Size(32, 13);
-            this.lbUrl.TabIndex = 1;
+            this.lbUrl.TabIndex = 0;
             this.lbUrl.Text = "URL:";
             // 
             // txtUrl
@@ -109,7 +109,7 @@
             this.txtUrl.Location = new System.Drawing.Point(103, 95);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(284, 20);
-            this.txtUrl.TabIndex = 3;
+            this.txtUrl.TabIndex = 2;
             // 
             // LocalNetworkHttpRequestSettingsForm
             // 

@@ -44,6 +44,7 @@
             this.btnEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAdd = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnUrl = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCommands)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +115,7 @@
             // 
             this.dgvCommands.AllowUserToAddRows = false;
             this.dgvCommands.AllowUserToDeleteRows = false;
+            this.dgvCommands.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dgvCommands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCommands.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Command,
@@ -121,11 +123,12 @@
             this.Version,
             this.btnEdit,
             this.btnAdd,
-            this.btnRemove});
+            this.btnRemove,
+            this.btnUrl});
             this.dgvCommands.Location = new System.Drawing.Point(18, 106);
             this.dgvCommands.Name = "dgvCommands";
             this.dgvCommands.ReadOnly = true;
-            this.dgvCommands.Size = new System.Drawing.Size(612, 240);
+            this.dgvCommands.Size = new System.Drawing.Size(558, 240);
             this.dgvCommands.TabIndex = 6;
             this.dgvCommands.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCommands_CellContentClick);
             // 
@@ -165,39 +168,49 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.FillWeight = 80F;
+            this.btnEdit.FillWeight = 60F;
             this.btnEdit.HeaderText = "Settings";
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.ReadOnly = true;
             this.btnEdit.Text = "Settings";
             this.btnEdit.UseColumnTextForButtonValue = true;
-            this.btnEdit.Width = 80;
+            this.btnEdit.Width = 60;
             // 
             // btnAdd
             // 
-            this.btnAdd.FillWeight = 80F;
+            this.btnAdd.FillWeight = 40F;
             this.btnAdd.HeaderText = "Add";
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ReadOnly = true;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseColumnTextForButtonValue = true;
-            this.btnAdd.Width = 80;
+            this.btnAdd.Width = 40;
             // 
             // btnRemove
             // 
-            this.btnRemove.FillWeight = 80F;
+            this.btnRemove.FillWeight = 60F;
             this.btnRemove.HeaderText = "Remove";
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.ReadOnly = true;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseColumnTextForButtonValue = true;
-            this.btnRemove.Width = 80;
+            this.btnRemove.Width = 60;
+            // 
+            // btnUrl
+            // 
+            this.btnUrl.FillWeight = 40F;
+            this.btnUrl.HeaderText = "Url";
+            this.btnUrl.Name = "btnUrl";
+            this.btnUrl.ReadOnly = true;
+            this.btnUrl.Text = "Url";
+            this.btnUrl.UseColumnTextForButtonValue = true;
+            this.btnUrl.Width = 40;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 466);
+            this.ClientSize = new System.Drawing.Size(579, 466);
             this.Controls.Add(this.dgvCommands);
             this.Controls.Add(this.txtRemotePort);
             this.Controls.Add(this.txtSecretCode);
@@ -235,5 +248,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn btnEdit;
         private System.Windows.Forms.DataGridViewButtonColumn btnAdd;
         private System.Windows.Forms.DataGridViewButtonColumn btnRemove;
+        private System.Windows.Forms.DataGridViewButtonColumn btnUrl;
     }
 }
