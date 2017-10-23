@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using Karpach.Remote.Commands.Interfaces;
 using Karpach.Remote.Commands.LocalNetworkHttpRequest;
 using Karpach.Remote.Commands.RunWindowsExecutable;
+using Karpach.Remote.Commands.Shutdown;
 using Karpach.Remote.Commands.WakeOnLan;
 
 namespace Karpach.Remote.Commands
@@ -19,7 +20,8 @@ namespace Karpach.Remote.Commands
             {
                 new WakeOnLanCommand(),
                 new LocalNetworkHttpRequestCommand(),
-                new RunWindowsExecutableCommand()
+                new RunWindowsExecutableCommand(),
+                new ShutdownCommand()
             };
         }
 
