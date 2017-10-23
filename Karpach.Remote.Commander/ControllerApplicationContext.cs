@@ -70,7 +70,7 @@ namespace Karpach.Remote.Commander
                     {
                         Image = command.TrayIcon
                     };
-                    commandButton.Click += command.RunCommand;
+                    commandButton.Click += (s,e) => command.RunCommand();
                     notifyContextMenu.Items.Add(commandButton);
                     hasConfiguredCommands = true;
                     previous = command;

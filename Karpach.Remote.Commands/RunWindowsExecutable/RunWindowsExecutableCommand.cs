@@ -25,7 +25,7 @@ namespace Karpach.Remote.Commands.RunWindowsExecutable
         {
         }        
 
-        public override void RunCommand(object sender, EventArgs e)
+        public override void RunCommand(params object[] parameters)
         {
             var settings = (RunWindowsExecutableSettings)Settings;            
             if (string.IsNullOrEmpty(settings.ExecutablePath))

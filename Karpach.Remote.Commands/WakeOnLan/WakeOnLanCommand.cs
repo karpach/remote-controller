@@ -23,7 +23,7 @@ namespace Karpach.Remote.Commands.WakeOnLan
         {            
         }
 
-        public override void RunCommand(object sender, EventArgs e)
+        public override void RunCommand(params object[] parameters)
         {            
             string macAddress = ((WakeOnLanCommandSettings)Settings)?.MacAddress;                        
 

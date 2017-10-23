@@ -25,7 +25,7 @@ namespace Karpach.Remote.Commands.LocalNetworkHttpRequest
         {
         }
 
-        public override void RunCommand(object sender, EventArgs e)
+        public override void RunCommand(params object[] parameters)
         {
             var settings = (LocalNetworkHttpRequestSettings)Settings;            
             if (string.IsNullOrEmpty(settings.PcName))

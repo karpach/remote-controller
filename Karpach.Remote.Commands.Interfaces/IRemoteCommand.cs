@@ -33,14 +33,13 @@ namespace Karpach.Remote.Commands.Interfaces
         /// <summary>
         /// Assembly name
         /// </summary>
-        string AssemblyName { get; }        
+        string AssemblyName { get; }
 
         /// <summary>
         /// Executes command
-        /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Event arguments</param>
-        void RunCommand(object sender, EventArgs e);
+        /// </summary>        
+        /// <param name="parameters">Execution parameters</param>
+        void RunCommand(params object[] parameters);
 
         /// <summary>
         /// Shows command settings dialog
