@@ -15,3 +15,5 @@ Remote controller has following commands already implemented:
 2. LocalNetworkHttpRequestCommand
 3. RunWindowsExecutableCommand
 4. ShutdownCommand
+
+[![Build status](https://ci.appveyor.com/api/projects/status/p8g0uov2y768r60f?svg=true)](https://ci.appveyor.com/project/karpach/remote-controller)
