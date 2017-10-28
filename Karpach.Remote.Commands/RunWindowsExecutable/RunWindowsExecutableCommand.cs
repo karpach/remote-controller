@@ -37,7 +37,8 @@ namespace Karpach.Remote.Commands.RunWindowsExecutable
             {
                 StartInfo =
                 {                    
-                    FileName = settings.ExecutablePath
+                    FileName = settings.ExecutablePath,
+                    Arguments = settings.Arguments
                 }
             };
             try

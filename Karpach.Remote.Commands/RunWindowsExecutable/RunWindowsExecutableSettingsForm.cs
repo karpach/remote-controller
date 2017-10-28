@@ -13,12 +13,14 @@ namespace Karpach.Remote.Commands.RunWindowsExecutable
             Settings = settings;             
             txtCommandName.Text = Settings.CommandName;
             txtExecutablePath.Text = Settings.ExecutablePath;
+            txtArguments.Text = Settings.Arguments;
         }                    
 
         private void btnOk_Click(object sender, EventArgs e)
         {            
             Settings.CommandName = txtCommandName.Text;
             Settings.ExecutablePath = txtExecutablePath.Text;
+            Settings.Arguments = txtArguments.Text;
             Close();
         }
 
