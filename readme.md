@@ -44,6 +44,8 @@ You can download executable from release section of the project or pull repo and
 
 Then run executable and you will see a new icon in system tray. Right click on it and select settings.
 
-This will give you the ability to customize shutdown url. Open up the desired port on your router and you should be able to run predefined commands from anywhere in the world using your external IP with customized url.
+This will give you the ability to customize remote commands. Open up the desired port on your router and you should be able to run predefined commands from anywhere in the world using your external IP with customized url.
+
+![Settings](Screenshots/Automation.png)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/p8g0uov2y768r60f?svg=true)](https://ci.appveyor.com/project/karpach/remote-controller)
