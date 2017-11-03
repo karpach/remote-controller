@@ -36,6 +36,9 @@ namespace Karpach.Remote.Commands.Shutdown
                 case ShutdownCommandType.Suspend:
                     Application.SetSuspendState(PowerState.Suspend, true, true);
                     break;
+                case ShutdownCommandType.Restart:
+                    Process.Start("shutdown", "/r /t 0");
+                    break;
             }
         }
 

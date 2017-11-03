@@ -67,6 +67,7 @@
             // 
             // cbxCommandType
             // 
+            this.cbxCommandType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCommandType.FormattingEnabled = true;
             this.cbxCommandType.Location = new System.Drawing.Point(106, 19);
             this.cbxCommandType.Name = "cbxCommandType";
