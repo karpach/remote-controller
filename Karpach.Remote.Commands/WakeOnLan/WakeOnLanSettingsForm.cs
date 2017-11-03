@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Karpach.Remote.Commands.WakeOnLan
@@ -50,7 +51,17 @@ namespace Karpach.Remote.Commands.WakeOnLan
         {
             if (!string.IsNullOrEmpty(cbxPcName.Text))
             {
-                IPHostEntry hostEntry = Dns.GetHostEntry(cbxPcName.Text);
+                IPHostEntry hostEntry;
+
+                try
+                {
+                    hostEntry = Dns.GetHostEntry(cbxPcName.Text);
+                }
+                catch
+                {
+                    txtMacAddress.Text = string.Empty;
+                    return;
+                }                
 
                 //you might get more than one ip for a hostname since 
                 //DNS supports more than one record
@@ -240,7 +251,23 @@ namespace Karpach.Remote.Commands.WakeOnLan
         }
 
         private void btnOk_Click(object sender, EventArgs e)
-        {
+        {                       
+            if (string.IsNullOrEmpty(cbxPcName.Text))
+            {
+                MessageBox.Show("Please specify PC Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                return;
+            }
+            if (string.IsNullOrEmpty(txtMacAddress.Text))
+            {
+                MessageBox.Show("Please specify Mac Address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!Regex.IsMatch(txtMacAddress.Text, "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"))
+            {
+                MessageBox.Show("Mac Address format should be XX:XX:XX:XX:XX:XX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DialogResult = DialogResult.OK;
             Settings.PcName = cbxPcName.Text;            
             Settings.MacAddress = txtMacAddress.Text;            
             Close();
