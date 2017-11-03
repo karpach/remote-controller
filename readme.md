@@ -1,5 +1,5 @@
 ﻿# Remote Controller 
-The project is a windows application, which gives an ability to run commands from remote application using http requests (e.g. IFTTT).
+The project is a windows application, which gives an ability to run commands from the remote application using HTTP requests (e.g. IFTTT).
 
 The application stays in a system tray area, where you can trigger custom commands as well.
 
