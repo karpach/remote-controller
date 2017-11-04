@@ -86,7 +86,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ShutdownCommandSettingsForm";
-            this.Text = "Run Windows Executable Settings";
+            this.Text = "Shutdown Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 
