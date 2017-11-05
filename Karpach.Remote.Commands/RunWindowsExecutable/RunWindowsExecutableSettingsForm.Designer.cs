@@ -36,12 +36,14 @@
             this.txtExecutablePath = new System.Windows.Forms.TextBox();
             this.lbArguments = new System.Windows.Forms.Label();
             this.txtArguments = new System.Windows.Forms.TextBox();
+            this.lbDelay = new System.Windows.Forms.Label();
+            this.txtDelay = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(130, 142);
+            this.btnOk.Location = new System.Drawing.Point(130, 169);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
@@ -52,7 +54,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(211, 142);
+            this.btnCancel.Location = new System.Drawing.Point(211, 169);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -63,7 +65,7 @@
             // lbCommandName
             // 
             this.lbCommandName.AutoSize = true;
-            this.lbCommandName.Location = new System.Drawing.Point(9, 22);
+            this.lbCommandName.Location = new System.Drawing.Point(22, 25);
             this.lbCommandName.Name = "lbCommandName";
             this.lbCommandName.Size = new System.Drawing.Size(88, 13);
             this.lbCommandName.TabIndex = 0;
@@ -71,15 +73,15 @@
             // 
             // txtCommandName
             // 
-            this.txtCommandName.Location = new System.Drawing.Point(103, 22);
+            this.txtCommandName.Location = new System.Drawing.Point(116, 22);
             this.txtCommandName.Name = "txtCommandName";
-            this.txtCommandName.Size = new System.Drawing.Size(282, 20);
+            this.txtCommandName.Size = new System.Drawing.Size(269, 20);
             this.txtCommandName.TabIndex = 0;
             // 
             // lbExecutablePath
             // 
             this.lbExecutablePath.AutoSize = true;
-            this.lbExecutablePath.Location = new System.Drawing.Point(9, 65);
+            this.lbExecutablePath.Location = new System.Drawing.Point(22, 95);
             this.lbExecutablePath.Name = "lbExecutablePath";
             this.lbExecutablePath.Size = new System.Drawing.Size(88, 13);
             this.lbExecutablePath.TabIndex = 0;
@@ -87,15 +89,15 @@
             // 
             // txtExecutablePath
             // 
-            this.txtExecutablePath.Location = new System.Drawing.Point(103, 62);
+            this.txtExecutablePath.Location = new System.Drawing.Point(116, 92);
             this.txtExecutablePath.Name = "txtExecutablePath";
-            this.txtExecutablePath.Size = new System.Drawing.Size(284, 20);
+            this.txtExecutablePath.Size = new System.Drawing.Size(271, 20);
             this.txtExecutablePath.TabIndex = 1;
             // 
             // lbArguments
             // 
             this.lbArguments.AutoSize = true;
-            this.lbArguments.Location = new System.Drawing.Point(37, 105);
+            this.lbArguments.Location = new System.Drawing.Point(50, 130);
             this.lbArguments.Name = "lbArguments";
             this.lbArguments.Size = new System.Drawing.Size(60, 13);
             this.lbArguments.TabIndex = 0;
@@ -103,20 +105,38 @@
             // 
             // txtArguments
             // 
-            this.txtArguments.Location = new System.Drawing.Point(103, 102);
+            this.txtArguments.Location = new System.Drawing.Point(116, 127);
             this.txtArguments.Name = "txtArguments";
-            this.txtArguments.Size = new System.Drawing.Size(284, 20);
+            this.txtArguments.Size = new System.Drawing.Size(271, 20);
             this.txtArguments.TabIndex = 1;
+            // 
+            // lbDelay
+            // 
+            this.lbDelay.AutoSize = true;
+            this.lbDelay.Location = new System.Drawing.Point(9, 60);
+            this.lbDelay.Name = "lbDelay";
+            this.lbDelay.Size = new System.Drawing.Size(101, 13);
+            this.lbDelay.TabIndex = 0;
+            this.lbDelay.Text = "Execution delay ms:";
+            // 
+            // txtDelay
+            // 
+            this.txtDelay.Location = new System.Drawing.Point(116, 57);
+            this.txtDelay.Name = "txtDelay";
+            this.txtDelay.Size = new System.Drawing.Size(271, 20);
+            this.txtDelay.TabIndex = 1;
             // 
             // RunWindowsExecutableSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 180);
+            this.ClientSize = new System.Drawing.Size(397, 206);
             this.Controls.Add(this.txtArguments);
+            this.Controls.Add(this.txtDelay);
             this.Controls.Add(this.txtExecutablePath);
             this.Controls.Add(this.txtCommandName);
             this.Controls.Add(this.lbArguments);
+            this.Controls.Add(this.lbDelay);
             this.Controls.Add(this.lbCommandName);
             this.Controls.Add(this.lbExecutablePath);
             this.Controls.Add(this.btnCancel);
@@ -140,5 +160,7 @@
         private System.Windows.Forms.TextBox txtExecutablePath;
         private System.Windows.Forms.Label lbArguments;
         private System.Windows.Forms.TextBox txtArguments;
+        private System.Windows.Forms.Label lbDelay;
+        private System.Windows.Forms.TextBox txtDelay;
     }
 }

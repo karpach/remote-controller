@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using Karpach.Remote.Commands.Interfaces;
 using NLog;
@@ -32,6 +33,10 @@ namespace Karpach.Remote.Commands.RunWindowsExecutable
             {
                 Logger.Warn($"{settings.Id} Run Windows Executable Command no Excecutable Path supplied.");
                 return;
+            }
+            if (settings.ExecutionDelay.HasValue && settings.ExecutionDelay.Value > 0)
+            {
+                Thread.Sleep(settings.ExecutionDelay.Value);
             }
             Process p = new Process
             {
