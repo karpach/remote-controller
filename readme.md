@@ -14,7 +14,7 @@ The program has following settings:
 Remote controller has following commands already implemented:
 
 1. Wake-on-LAN command
-2. Local network HttpRequest command
+2. HTTP Request command
 3. Run Windows executable command
 4. Shutdown command
 
