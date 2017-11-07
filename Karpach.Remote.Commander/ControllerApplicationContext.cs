@@ -24,7 +24,7 @@ namespace Karpach.Remote.Commander
         {
             var catalog = new AggregateCatalog();
 
-            var files = Directory.GetFiles(".\\Plugins", "*.dll", SearchOption.AllDirectories);
+            var files = Directory.GetFiles($@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Plugins", "*.dll", SearchOption.AllDirectories);
 
             foreach (var dllFilePath in files)
             {
