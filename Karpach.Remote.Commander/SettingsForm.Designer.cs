@@ -37,7 +37,6 @@
             this.lbRemotePort = new System.Windows.Forms.Label();
             this.txtRemotePort = new System.Windows.Forms.TextBox();
             this.dgvCommands = new System.Windows.Forms.DataGridView();
-            this.lbCommands = new System.Windows.Forms.Label();
             this.Command = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Assembly = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +44,7 @@
             this.btnAdd = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnUrl = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lbCommands = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCommands)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,15 +132,6 @@
             this.dgvCommands.TabIndex = 6;
             this.dgvCommands.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCommands_CellContentClick);
             // 
-            // lbCommands
-            // 
-            this.lbCommands.AutoSize = true;
-            this.lbCommands.Location = new System.Drawing.Point(15, 78);
-            this.lbCommands.Name = "lbCommands";
-            this.lbCommands.Size = new System.Drawing.Size(102, 13);
-            this.lbCommands.TabIndex = 2;
-            this.lbCommands.Text = "Remote Commands:";
-            // 
             // Command
             // 
             this.Command.DataPropertyName = "CommandTitle";
@@ -205,6 +196,15 @@
             this.btnUrl.Text = "Url";
             this.btnUrl.UseColumnTextForButtonValue = true;
             this.btnUrl.Width = 40;
+            // 
+            // lbCommands
+            // 
+            this.lbCommands.AutoSize = true;
+            this.lbCommands.Location = new System.Drawing.Point(15, 78);
+            this.lbCommands.Name = "lbCommands";
+            this.lbCommands.Size = new System.Drawing.Size(102, 13);
+            this.lbCommands.TabIndex = 2;
+            this.lbCommands.Text = "Remote Commands:";
             // 
             // SettingsForm
             // 
