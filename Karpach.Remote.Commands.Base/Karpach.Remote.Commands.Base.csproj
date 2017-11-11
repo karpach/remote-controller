@@ -32,8 +32,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj" />      
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>  
 </Project>
