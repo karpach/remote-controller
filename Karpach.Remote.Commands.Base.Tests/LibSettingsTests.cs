@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Karpach.Remote.Commands;
 using Karpach.Remote.Commands.HttpRequest;
 using Karpach.Remote.Commands.WakeOnLan;
 using NUnit.Framework;
 
-namespace Karpach.Remote.Commander.Tests
+namespace Karpach.Remote.Commands.Base.Tests
 {
     [TestFixture]
     public class LibSettingsTests
@@ -56,7 +55,7 @@ namespace Karpach.Remote.Commander.Tests
             string tempPath = Path.GetTempFileName();
 
             // Act
-            var settings = new LibSettings(tempPath)
+            var settings = new LibSettings(typeof(WakeOnLanCommandSettings).Assembly)
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
@@ -78,7 +77,7 @@ namespace Karpach.Remote.Commander.Tests
         {
             // Arrange
             string tempPath = Path.GetTempFileName();
-            var initSettings = new LibSettings(tempPath)
+            var initSettings = new LibSettings(typeof(WakeOnLanCommandSettings).Assembly)
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
@@ -88,7 +87,7 @@ namespace Karpach.Remote.Commander.Tests
             };
 
             // Act
-            var settings = new LibSettings(tempPath);
+            var settings = new LibSettings(typeof(WakeOnLanCommandSettings).Assembly);
             WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues(typeof(WakeOnLanCommandSettings)).Cast<WakeOnLanCommandSettings>().ToArray();
             HttpRequestSettings[] localNetworkHttpRequestSettings = settings.GetValues(typeof(HttpRequestSettings)).Cast<HttpRequestSettings>().ToArray();
 
@@ -110,7 +109,7 @@ namespace Karpach.Remote.Commander.Tests
         {
             // Arrange
             string tempPath = Path.GetTempFileName();
-            var initSettings = new LibSettings(tempPath)
+            var initSettings = new LibSettings(typeof(WakeOnLanCommandSettings).Assembly)
             {
                 [_wakeOnLanCommandSettings[0].Id] = _wakeOnLanCommandSettings[0],
                 [_wakeOnLanCommandSettings[1].Id] = _wakeOnLanCommandSettings[1],
@@ -121,7 +120,7 @@ namespace Karpach.Remote.Commander.Tests
 
             // Act
             initSettings.Remove(_wakeOnLanCommandSettings[1].Id);
-            var settings = new LibSettings(tempPath);            
+            var settings = new LibSettings(typeof(WakeOnLanCommandSettings).Assembly);            
             WakeOnLanCommandSettings[] wakeOnLanCommandSettings = settings.GetValues(typeof(WakeOnLanCommandSettings)).Cast<WakeOnLanCommandSettings>().ToArray();
             HttpRequestSettings[] localNetworkHttpRequestSettings = settings.GetValues(typeof(HttpRequestSettings)).Cast<HttpRequestSettings>().ToArray();
 

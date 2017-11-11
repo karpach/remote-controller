@@ -1,4 +1,6 @@
-﻿namespace Karpach.Remote.Commands.WakeOnLan
+﻿using Karpach.Remote.Commands.Base;
+
+namespace Karpach.Remote.Commands.WakeOnLan
 {
     public class WakeOnLanCommandSettings : CommandSettingsBase
     {

@@ -82,15 +82,12 @@
     <Compile Include="CommandsContainer.cs" />
     <Compile Include="HttpRequest\HttpRequestCommand.cs" />
     <Compile Include="HttpRequest\HttpRequestSettings.cs" />
-    <Compile Include="LibSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="CommandSettingsBase.cs" />
-    <Compile Include="CommandBase.cs" />
     <Compile Include="HttpRequest\HttpRequestSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +143,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Karpach.Remote.Commands.Base\Karpach.Remote.Commands.Base.csproj">
+      <Project>{AA5B67F9-47D3-45AE-9AAF-8CE9C4457AFA}</Project>
+      <Name>Karpach.Remote.Commands.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj">
       <Project>{749a1018-4b45-4fb9-8fa7-72c1f40fd884}</Project>
       <Name>Karpach.Remote.Commands.Interfaces</Name>

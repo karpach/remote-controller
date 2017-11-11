@@ -1,4 +1,6 @@
-﻿namespace Karpach.Remote.Commands.Shutdown
+﻿using Karpach.Remote.Commands.Base;
+
+namespace Karpach.Remote.Commands.Shutdown
 {
     public class ShutdownSettings: CommandSettingsBase
     {

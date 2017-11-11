@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using Karpach.Remote.Commands.Base;
 using Karpach.Remote.Commands.Interfaces;
 using NLog;
 

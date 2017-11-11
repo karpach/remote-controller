@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using Karpach.Remote.Commands.Base;
 using Karpach.Remote.Commands.Interfaces;
 
 namespace Karpach.Remote.Commands.WakeOnLan

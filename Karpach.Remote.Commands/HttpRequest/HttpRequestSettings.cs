@@ -1,4 +1,6 @@
-﻿namespace Karpach.Remote.Commands.HttpRequest
+﻿using Karpach.Remote.Commands.Base;
+
+namespace Karpach.Remote.Commands.HttpRequest
 {
     public class HttpRequestSettings: CommandSettingsBase
     {        

@@ -24,8 +24,9 @@ namespace Karpach.Remote.Commander.Helpers
                 {
                     return Type.GetType(s);
                 }
-                Assembly assembly = Assembly.LoadFile(dllPath);                
-                return assembly.GetType(parts[0]);
+                Assembly assembly = Assembly.LoadFrom(dllPath);                  
+                Type result = assembly.GetType(parts[0],true);                
+                return result;
             }
             return Type.GetType(s);            
         }

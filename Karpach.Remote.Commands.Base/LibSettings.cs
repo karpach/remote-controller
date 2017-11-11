@@ -5,26 +5,21 @@ using System.Linq;
 using System.Reflection;
 using SharpConfig;
 
-namespace Karpach.Remote.Commands
+namespace Karpach.Remote.Commands.Base
 {
     public class LibSettings
-    {                
-        private static readonly string DefaultPath = $@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Karpach.Remote.Commands.ini";
+    {                        
         private readonly string _path;
 
-        private readonly Dictionary<Guid,object> _objects = new Dictionary<Guid, object>();
+        private readonly Dictionary<Guid,object> _objects = new Dictionary<Guid, object>();        
 
-        public LibSettings():this(DefaultPath)
+        public LibSettings(Assembly assembly)
         {
-        }
-
-        public LibSettings(string path)
-        {
-            _path = path;
+            _path = $@"{Path.GetDirectoryName(assembly.Location)}\{assembly.GetName().Name}.ini";
             Configuration configuration = File.Exists(_path) ? Configuration.LoadFromFile(_path) : new Configuration();            
             foreach (Section section in configuration)
             {
-                _objects[section["Id"].GetValue<Guid>()] = section.ToObject(Type.GetType(section.Name));                
+                _objects[section["Id"].GetValue<Guid>()] = section.ToObject(assembly.GetType(section.Name));                
             }
         }
 

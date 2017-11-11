@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using Karpach.Remote.Commands.Interfaces;
 
-namespace Karpach.Remote.Commands
+namespace Karpach.Remote.Commands.Base
 {
     public abstract class CommandBase: IRemoteCommand
     {
         protected const string NotConfigured = "Not Configured";
-        protected readonly LibSettings LibSettings = new LibSettings();
+        protected readonly LibSettings LibSettings;
         protected bool ConfiguredValue;
         public Guid Id => Settings.Id;
         public abstract string CommandTitle { get; }
@@ -23,8 +24,9 @@ namespace Karpach.Remote.Commands
 
         protected CommandBase(Guid? id)
         {
+            LibSettings = new LibSettings(Assembly.GetAssembly(SettingsType));
             if (id.HasValue)
-            {
+            {                
                 CommandSettingsBase settings = LibSettings[id.Value] as CommandSettingsBase;
                 ConfiguredValue = settings != null;
                 if (ConfiguredValue)                
@@ -34,7 +36,7 @@ namespace Karpach.Remote.Commands
                 else
                 {                    
                     Settings = (CommandSettingsBase) Activator.CreateInstance(SettingsType);
-                    Settings.Id = id.Value;
+                    Settings.Id = id.Value;                    
                 }
             }
             else

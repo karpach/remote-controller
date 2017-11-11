@@ -1,4 +1,6 @@
-﻿namespace Karpach.Remote.Commands.RunWindowsExecutable
+﻿using Karpach.Remote.Commands.Base;
+
+namespace Karpach.Remote.Commands.RunWindowsExecutable
 {
     public class RunWindowsExecutableSettings: CommandSettingsBase
     {
