@@ -12,7 +12,7 @@
      <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png?raw=true</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
      <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
-     <Version>1.0.1</Version>    
+     <Version>1.0.2</Version>    
   </PropertyGroup>  
   <ItemGroup>
     <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
