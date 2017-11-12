@@ -5,13 +5,14 @@
      <Authors>Viktar Karpach</Authors>        	 
      <Company>Karpach.com</Company>        	 
      <Product>Remote Controller Command Base</Product>        	 
-     <Description>Base class for Remote Controller commands</Description>        	 
+     <Description>Base class for Remote Controller commands (Karpach.Remote.Commander)</Description>        	 
      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>        	 
      <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>        	 
      <PackageProjectUrl>https://github.com/karpach/remote-controller/wiki</PackageProjectUrl>        	 
-     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.ico</PackageIconUrl>        	 
+     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png?raw=true</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
-     <PackageTags>remote control,ifttt,http request,karpach</PackageTags>    
+     <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
+     <Version>1.0.1</Version>    
   </PropertyGroup>  
   <ItemGroup>
     <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
@@ -28,9 +29,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>  
   <ItemGroup>
+	  <PackageReference Include="Karpach.Remote.Commands.Interfaces" Version="1.0.1" />
 	  <PackageReference Include="sharpconfig" Version="3.2.0" />	  
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj" />      
   </ItemGroup>  
 </Project>
