@@ -77,6 +77,9 @@
     <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Karpach.Remote.Commands.Interfaces, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Karpach.Remote.Commands.Interfaces.1.0.1\lib\net46\Karpach.Remote.Commands.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Hosting, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Hosting.1.1.2\lib\net451\Microsoft.AspNetCore.Hosting.dll</HintPath>
     </Reference>
@@ -320,12 +323,6 @@
     <Content Include="Icons\exit.ico" />
     <Content Include="Icons\settings.ico" />
     <Content Include="Icons\switch.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj">
-      <Project>{749a1018-4b45-4fb9-8fa7-72c1f40fd884}</Project>
-      <Name>Karpach.Remote.Commands.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

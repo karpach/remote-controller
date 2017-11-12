@@ -6,7 +6,7 @@
      <Company>Karpach.com</Company>   
 	 <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>        	 
      <PackageProjectUrl>https://github.com/karpach/remote-controller/wiki</PackageProjectUrl>        	 
-     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png</PackageIconUrl>        	 
+     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png?raw=true</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
      <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
      <Description>Interfaces Remote Controller commands (Karpach.Remote.Commander)</Description>        	 

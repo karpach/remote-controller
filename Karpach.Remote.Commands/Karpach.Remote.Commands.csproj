@@ -48,6 +48,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Karpach.Remote.Commands.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Karpach.Remote.Commands.Base.1.0.0\lib\net46\Karpach.Remote.Commands.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Karpach.Remote.Commands.Interfaces, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Karpach.Remote.Commands.Interfaces.1.0.1\lib\net46\Karpach.Remote.Commands.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL">
       <HintPath>..\packages\NetBox.1.4.22\lib\net45\NetBox.dll</HintPath>
     </Reference>
@@ -141,17 +147,6 @@
     <EmbeddedResource Include="WakeOnLan\WakeOnLanSettingsForm.resx">
       <DependentUpon>WakeOnLanSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Karpach.Remote.Commands.Base\Karpach.Remote.Commands.Base.csproj">
-      <Project>{AA5B67F9-47D3-45AE-9AAF-8CE9C4457AFA}</Project>
-      <Name>Karpach.Remote.Commands.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Karpach.Remote.Commands.Interfaces\Karpach.Remote.Commands.Interfaces.csproj">
-      <Project>{749a1018-4b45-4fb9-8fa7-72c1f40fd884}</Project>
-      <Name>Karpach.Remote.Commands.Interfaces</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\shutdown.ico" />
