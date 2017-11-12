@@ -6,11 +6,12 @@
      <Company>Karpach.com</Company>   
 	 <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>        	 
      <PackageProjectUrl>https://github.com/karpach/remote-controller/wiki</PackageProjectUrl>        	 
-     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.ico</PackageIconUrl>        	 
+     <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
      <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
-     <Description>Interfaces Remote Controller commands</Description>        	 
-     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>   	 
+     <Description>Interfaces Remote Controller commands (Karpach.Remote.Commander)</Description>        	 
+     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>        	 
+     <Version>1.0.1</Version>   	 
   </PropertyGroup>   
   <ItemGroup>
     <Reference Include="System" />
