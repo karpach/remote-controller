@@ -12,8 +12,13 @@
      <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png?raw=true</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
      <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
-     <Version>1.0.2</Version>    
-  </PropertyGroup>  
+     <Version>1.0.3</Version>    
+  </PropertyGroup>      
+  <ItemGroup>
+    <Content Include="SampleCommand\SampleCommand.cs" />
+    <Content Include="SampleCommand\SampleCommandSettings.cs" />    
+    <Content Include="SampleCommand\SampleCommandSettingsForm.cs" />    
+  </ItemGroup>    
   <ItemGroup>
     <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
       <HintPath>..\packages\sharpconfig.3.2.0\lib\net20\SharpConfig.dll</HintPath>
@@ -21,6 +26,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -31,5 +37,15 @@
   <ItemGroup>
 	  <PackageReference Include="Karpach.Remote.Commands.Interfaces" Version="1.0.1" />
 	  <PackageReference Include="sharpconfig" Version="3.2.0" />	  
+  </ItemGroup>  
+  <ItemGroup>
+    <Compile Update="SampleCommand\SampleCommandSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>  
+  <ItemGroup>
+    <EmbeddedResource Update="SampleCommand\SampleCommandSettingsForm.resx">
+      <DependentUpon>SampleCommandSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>  
 </Project>
