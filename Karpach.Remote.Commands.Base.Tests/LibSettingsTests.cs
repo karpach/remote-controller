@@ -135,6 +135,15 @@ namespace Karpach.Remote.Commands.Base.Tests
             Assert.IsNotNull(wakeOnLanCommandSetting);
             Assert.AreEqual(wakeOnLanCommandSettings[1].Id, wakeOnLanCommandSetting.Id);
             Console.WriteLine(File.ReadAllText(tempPath));
-        }        
+        }
+
+        /*
+        [Test]        
+        public void Sample()
+        {
+            SampleCommandSettingsForm dlg = new SampleCommandSettingsForm(new SampleCommandSettings());
+            dlg.ShowDialog();
+        }
+        */
     }
 }
