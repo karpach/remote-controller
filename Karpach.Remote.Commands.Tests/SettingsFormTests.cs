@@ -8,7 +8,7 @@ namespace Karpach.Remote.Commander.Tests
     {        
 
         [Test]    
-        //[Ignore("UI test")]
+        [Ignore("UI test")]
         public void IPTest()
         {
             // Arrange
