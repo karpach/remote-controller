@@ -196,10 +196,10 @@ namespace Karpach.Remote.Commander
         public ListSortDirection SortDirection => ListSortDirection.Ascending;
         public event ListChangedEventHandler ListChanged;
 
-        public void RunCommand(Guid id)
+        public void RunCommand(Guid id, string[] parameters = null)
         {
             IRemoteCommand command = _commands.FirstOrDefault(c => c.Id == id);
-            command?.RunCommand(this, new EventArgs());
+            command?.RunCommand(parameters);
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using NLog;
+using System.Collections.Generic;
 
 namespace Karpach.Remote.Commander.Helpers
 {
@@ -43,8 +44,24 @@ namespace Karpach.Remote.Commander.Helpers
                     {
                         app.Run(async context =>
                         {
+                            List<string> additionalParameters = null;
+                            if (context.Request.Method == "POST" && context.Request.Form != null && context.Request.Form.Keys.Count > 0)
+                            {
+                                additionalParameters = new List<string>();
+                                foreach (KeyValuePair<string, Microsoft.Extensions.Primitives.StringValues> item in context.Request.Form)
+                                {
+                                    if (item.Value.Count == 1)
+                                    {
+                                        additionalParameters.Add(item.Value[0]);
+                                    }
+                                }
+                                if (additionalParameters.Count == 0)
+                                {
+                                    additionalParameters = null;
+                                }
+                            }
 #pragma warning disable 4014
-                            ProcessRequestAsync(context.Request.Path.Value);
+                            ProcessRequestAsync(context.Request.Path.Value, additionalParameters?.ToArray());
 #pragma warning restore 4014
                             await context.Response.WriteAsync("Ok");
                         });
@@ -59,7 +76,7 @@ namespace Karpach.Remote.Commander.Helpers
             _cancellationTokenSource.Cancel();
         }
 
-        internal async Task ProcessRequestAsync(string url)
+        internal async Task ProcessRequestAsync(string url, string[] additionalParameters = null)
         {
             await Task.Delay(1000).ConfigureAwait(false);
             if (!string.IsNullOrEmpty(SecretCode) && !url.StartsWith($"/{SecretCode}/"))
@@ -76,7 +93,7 @@ namespace Karpach.Remote.Commander.Helpers
             if (Guid.TryParse(commandId, out id))
             {
                 Logger.Info("{id} command is executed.");
-                _commandsManager.RunCommand(id);
+                _commandsManager.RunCommand(id, additionalParameters);
             }
         }
     }

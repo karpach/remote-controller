@@ -31,7 +31,7 @@ namespace Karpach.Remote.Commander.Tests
             await _hostHelper.ProcessRequestAsync($"/someCode/{commandId}").ConfigureAwait(false);
 
             // Assert
-            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId), Times.Once);
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, null), Times.Once);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Karpach.Remote.Commander.Tests
             await _hostHelper.ProcessRequestAsync($"/{secret}/{commandId}").ConfigureAwait(false);
 
             // Assert
-            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId), Times.Once);
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, null), Times.Once);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Karpach.Remote.Commander.Tests
             await _hostHelper.ProcessRequestAsync($"/invalid/{commandId}").ConfigureAwait(false);
 
             // Assert
-            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId), Times.Never);
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, null), Times.Never);
         }
 
         [Test]
@@ -74,7 +74,21 @@ namespace Karpach.Remote.Commander.Tests
             await _hostHelper.ProcessRequestAsync($"/{commandId}").ConfigureAwait(false);
 
             // Assert
-            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId), Times.Once);
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, null), Times.Once);
+        }
+
+        [Test]
+        public async Task ProcessRequestAsync_No_Secret_With_Params()
+        {
+            // Arrange            
+            Guid commandId = Guid.NewGuid();
+            string[] someParameters = {"123", "432"};
+
+            // Act
+            await _hostHelper.ProcessRequestAsync($"/{commandId}", someParameters).ConfigureAwait(false);
+
+            // Assert
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, someParameters), Times.Once);
         }
 
         [Test]
@@ -87,7 +101,7 @@ namespace Karpach.Remote.Commander.Tests
             await _hostHelper.ProcessRequestAsync("/somecommand").ConfigureAwait(false);
 
             // Assert
-            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId), Times.Never);
+            _mocker.Verify<ICommandsManager>(x => x.RunCommand(commandId, null), Times.Never);
         }
     }
 }
