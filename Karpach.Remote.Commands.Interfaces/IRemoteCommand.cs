@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Karpach.Remote.Commands.Interfaces
 {
-    public interface IRemoteCommand
+    public interface IRemoteCommand: IDisposable
     {
         /// <summary>
         /// Unique identifier for the command
