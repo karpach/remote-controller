@@ -12,7 +12,7 @@
      <PackageIconUrl>https://github.com/karpach/remote-controller/blob/master/Karpach.Remote.Commander/Icons/remote.png?raw=true</PackageIconUrl>        	 
      <RepositoryUrl>https://github.com/karpach/remote-controller</RepositoryUrl>        	 
      <PackageTags>remote control,ifttt,http request,karpach</PackageTags>        	 
-     <Version>1.0.4</Version>    
+     <Version>1.0.5</Version>    
   </PropertyGroup>      
   <ItemGroup>
     <Content Include="SampleCommand\SampleCommand.cs" />
@@ -35,7 +35,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>  
   <ItemGroup>
-	  <PackageReference Include="Karpach.Remote.Commands.Interfaces" Version="1.0.1" />
+	  <PackageReference Include="Karpach.Remote.Commands.Interfaces" Version="1.0.4" />
 	  <PackageReference Include="sharpconfig" Version="3.2.0" />	  
   </ItemGroup>  
   <ItemGroup>

@@ -77,5 +77,9 @@ namespace Karpach.Remote.Commands.Base
                 return "N/A";
             }
         }
+
+        public virtual void Dispose()
+        {            
+        }
     }
 }
