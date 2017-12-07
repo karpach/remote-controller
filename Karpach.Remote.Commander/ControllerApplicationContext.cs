@@ -141,6 +141,10 @@ namespace Karpach.Remote.Commander
             // Hide tray icon, otherwise it will remain shown until user mouses over it
             _trayIcon.Visible = false;            
             _hostHelper.Cancel();
+            foreach (IRemoteCommand command in _commandsManager.Cast<IRemoteCommand>())
+            {
+                command.Dispose();
+            }
             Application.Exit();
         }        
     }
