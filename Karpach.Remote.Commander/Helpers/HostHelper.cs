@@ -92,7 +92,7 @@ namespace Karpach.Remote.Commander.Helpers
             Guid id;
             if (Guid.TryParse(commandId, out id))
             {
-                Logger.Info("{id} command is executed.");
+                Logger.Info($"{id} command is executed.");
                 _commandsManager.RunCommand(id, additionalParameters);
             }
         }
