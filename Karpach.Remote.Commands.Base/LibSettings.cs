@@ -19,7 +19,12 @@ namespace Karpach.Remote.Commands.Base
             Configuration configuration = File.Exists(_path) ? Configuration.LoadFromFile(_path) : new Configuration();            
             foreach (Section section in configuration)
             {
-                _objects[section["Id"].GetValue<Guid>()] = section.ToObject(assembly.GetType(section.Name));                
+                Type type = assembly.GetType(section.Name, false);
+                if (type == null)
+                {
+                    throw new Exception($"Unable to load type: {section.Name}");
+                }
+                _objects[section["Id"].GetValue<Guid>()] = section.ToObject(type);                
             }
         }
 
