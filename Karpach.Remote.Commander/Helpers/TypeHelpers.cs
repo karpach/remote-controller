@@ -14,21 +14,36 @@ namespace Karpach.Remote.Commander.Helpers
 
         public static Type GetType(string s)
         {
+            Type result;
             string[] parts = s.Split(',');
             if (parts.Length == 2)
             {
                 string initialPath = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location);
                 string dllName = $"{parts[1]}.dll";
-                string dllPath = FindFileRecursive(initialPath, dllName);
+                string dllPath = FindFileRecursive(initialPath, dllName);                
                 if (dllPath == null)
                 {
-                    return Type.GetType(s);
+                    result = Type.GetType(s, false);
+                    if (result == null)
+                    {
+                        throw new Exception($"Unable to load type: {s}, dll not found.");
+                    }
+                    return result;
                 }
-                Assembly assembly = Assembly.LoadFrom(dllPath);                  
-                Type result = assembly.GetType(parts[0],true);                
+                Assembly assembly = Assembly.LoadFrom(dllPath);                                  
+                result = assembly.GetType(parts[0], false);
+                if (result == null)
+                {
+                    throw new Exception($"Unable to load type: {s}");
+                }
                 return result;
             }
-            return Type.GetType(s);            
+            result = Type.GetType(s, false);
+            if (result == null)
+            {
+                throw new Exception($"Unable to load type: {s}");
+            }
+            return result;            
         }
 
         private static string FindFileRecursive(string path, string fileName)
