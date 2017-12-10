@@ -68,7 +68,7 @@ namespace Karpach.Remote.Commands.Base
         {
             get
             {
-                Assembly assembly = Assembly.GetExecutingAssembly();
+                Assembly assembly = Assembly.GetAssembly(SettingsType);
                 object[] attributes = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
                 if (attributes.Length > 0 && attributes[0] is AssemblyFileVersionAttribute)
                 {
