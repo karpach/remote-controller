@@ -17,6 +17,7 @@ namespace SampleCommand
         }
 
         public override string CommandTitle => ConfiguredValue ? ((SampleCommandSettings)Settings).CommandName : $"Sample Command - {NotConfigured}";
+        protected override Type SettingsType => typeof(SampleCommandSettings);
         public override Image TrayIcon { get; }
         public override void RunCommand(params object[] parameters)
         {
