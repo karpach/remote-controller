@@ -15,7 +15,7 @@ namespace Karpach.Remote.Commands.Base
         protected readonly CommandSettingsBase Settings;
         public bool Configured => ConfiguredValue;
         public abstract Image TrayIcon { get; }        
-        public string AssemblyName => Assembly.GetExecutingAssembly().GetName().Name;
+        public string AssemblyName => Assembly.GetAssembly(SettingsType).GetName().Name;
         public abstract void RunCommand(params object[] parameters);
         public abstract void ShowSettings();
         public abstract IRemoteCommand Create(Guid id);
