@@ -109,9 +109,6 @@
     </Compile>
     <Compile Include="RunWindowsExecutable\RunWindowsExecutableCommand.cs" />
     <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettings.cs" />
-    <Compile Include="SampleCommand\SampleCommand.cs" />
-    <Compile Include="SampleCommand\SampleCommandSettings.cs" />
-    <Compile Include="SampleCommand\SampleCommandSettingsForm.cs" />
     <Compile Include="Shutdown\ShutdownCommandSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
