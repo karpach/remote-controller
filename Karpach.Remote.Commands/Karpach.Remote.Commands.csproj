@@ -1,163 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E4F41D2-5280-4E4B-B489-61531BCB017D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Karpach.Remote.Commands</RootNamespace>
-    <AssemblyName>Karpach.Remote.Commands</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Karpach.Remote.Commander\bin\Debug\Plugins\Karpach.Remote.Commands\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Karpach.Remote.Commander\bin\x64\Release\Plugins\Karpach.Remote.Commands\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Karpach.Remote.Commander\bin\x86\Debug\Plugins\Karpach.Remote.Commands\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Karpach.Remote.Commands.Base, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Karpach.Remote.Commands.Base.1.0.10\lib\net461\Karpach.Remote.Commands.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Karpach.Remote.Commands.Interfaces, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Karpach.Remote.Commands.Interfaces.1.0.5\lib\net461\Karpach.Remote.Commands.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetBox.1.4.22\lib\net45\NetBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpConfig, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c1deedac91bd7724, processorArchitecture=MSIL">
-      <HintPath>..\packages\sharpconfig.3.2.0\lib\net20\SharpConfig.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CommandsContainer.cs" />
-    <Compile Include="HttpRequest\HttpRequestCommand.cs" />
-    <Compile Include="HttpRequest\HttpRequestSettings.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="HttpRequest\HttpRequestSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HttpRequest\HttpRequestSettingsForm.Designer.cs">
-      <DependentUpon>HttpRequestSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.Designer.cs">
-      <DependentUpon>RunWindowsExecutableSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RunWindowsExecutable\RunWindowsExecutableCommand.cs" />
-    <Compile Include="RunWindowsExecutable\RunWindowsExecutableSettings.cs" />
-    <Compile Include="Shutdown\ShutdownCommandSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Shutdown\ShutdownCommandSettingsForm.Designer.cs">
-      <DependentUpon>ShutdownCommandSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Shutdown\ShutdownCommand.cs" />
-    <Compile Include="Shutdown\ShutdownCommandType.cs" />
-    <Compile Include="Shutdown\ShutdownSettings.cs" />
-    <Compile Include="WakeOnLan\WakeOnLanCommandSettings.cs" />
-    <Compile Include="WakeOnLan\WakeOnLanSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WakeOnLan\WakeOnLanSettingsForm.Designer.cs">
-      <DependentUpon>WakeOnLanSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WakeOnLan\WakeOnLanCommand.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Icons\exe.ico" />
-    <Content Include="Icons\lan.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HttpRequest\HttpRequestSettingsForm.resx">
-      <DependentUpon>HttpRequestSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RunWindowsExecutable\RunWindowsExecutableSettingsForm.resx">
-      <DependentUpon>RunWindowsExecutableSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shutdown\ShutdownCommandSettingsForm.resx">
-      <DependentUpon>ShutdownCommandSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WakeOnLan\WakeOnLanSettingsForm.resx">
-      <DependentUpon>WakeOnLanSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Icons\shutdown.ico" />
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<Platforms>x64</Platforms>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<BaseOutputPath>..\Karpach.Remote.Commander\bin\x64\$(Configuration)\net6.0-windows\win-x64\Plugins\</BaseOutputPath>
+	</PropertyGroup>  
+	<ItemGroup>
+		<Content Include="Icons\exe.ico" />
+		<Content Include="Icons\lan.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="Icons\shutdown.ico" />
+		<Content Include="NLog.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<None Update="NLog.xsd">
+			<SubType>Designer</SubType>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NetBox" Version="1.4.22" />
+		<PackageReference Include="NLog.Config" Version="4.4.12" />
+	</ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Karpach.Remote.Commands.Base\Karpach.Remote.Commands.Base.csproj" />
+	</ItemGroup>
 </Project>

@@ -67,7 +67,7 @@ namespace Karpach.Remote.Commander.Helpers
                         });
                     })
                     .Build();
-                host.Run(_cancellationTokenSource.Token);                
+                host.RunAsync(_cancellationTokenSource.Token);
             }, _cancellationTokenSource.Token);
         }
 
