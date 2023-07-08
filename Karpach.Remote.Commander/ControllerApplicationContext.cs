@@ -10,6 +10,7 @@ using Karpach.Remote.Commander.Interfaces;
 using Karpach.Remote.Commander.Properties;
 using Microsoft.Win32;
 using Karpach.Remote.Commands.Interfaces;
+using NLog;
 
 namespace Karpach.Remote.Commander
 {
@@ -19,12 +20,12 @@ namespace Karpach.Remote.Commander
         private readonly IHostHelper _hostHelper;
         private readonly NotifyIcon _trayIcon;                
         private readonly CommandsManager _commandsManager;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public ControllerApplicationContext(SettingsForm.Factory settingsFormFactory, HostHelper.Factory hostHelperFactory, ICommandsSettings commandsSettings, CommandsManager.Factory commandManagerFactory)
+		public ControllerApplicationContext(SettingsForm.Factory settingsFormFactory, HostHelper.Factory hostHelperFactory, ICommandsSettings commandsSettings, CommandsManager.Factory commandManagerFactory)
         {
             var catalog = new AggregateCatalog();
-
-            var files = Directory.GetFiles($@"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Plugins", "*.dll", SearchOption.AllDirectories);
+            var files = Directory.GetFiles($@"{Path.GetDirectoryName(AppContext.BaseDirectory)}\Plugins", "*.dll", SearchOption.AllDirectories);
 
             foreach (var dllFilePath in files)
             {

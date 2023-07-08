@@ -37,4 +37,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Karpach.Remote.Commands.Base\Karpach.Remote.Commands.Base.csproj" />
 	</ItemGroup>
+	<Target Name="PublishPlugins" AfterTargets="Publish">
+		<ItemGroup>
+			<PluginsToCopy Include="\bin\publish\Karpach.Remote.Commands.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(PluginsToCopy)" DestinationFolder="..\Karpach.Remote.Commander\bin\publish\Plugins\" SkipUnchangedFiles="true" />
+	</Target>
+
 </Project>
