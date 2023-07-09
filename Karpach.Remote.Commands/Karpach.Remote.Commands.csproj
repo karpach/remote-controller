@@ -39,7 +39,7 @@
 	</ItemGroup>
 	<Target Name="PublishPlugins" AfterTargets="Publish">
 		<ItemGroup>
-			<PluginsToCopy Include="\bin\publish\Karpach.Remote.Commands.*" />
+			<PluginsToCopy Include="$(ProjectDir)bin\publish\Karpach.Remote.Commands.*" />
 		</ItemGroup>
 		<Copy SourceFiles="@(PluginsToCopy)" DestinationFolder="..\Karpach.Remote.Commander\bin\publish\Plugins\" SkipUnchangedFiles="true">
 			<Output
