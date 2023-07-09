@@ -41,7 +41,13 @@
 		<ItemGroup>
 			<PluginsToCopy Include="\bin\publish\Karpach.Remote.Commands.*" />
 		</ItemGroup>
-		<Copy SourceFiles="@(PluginsToCopy)" DestinationFolder="..\Karpach.Remote.Commander\bin\publish\Plugins\" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(PluginsToCopy)" DestinationFolder="..\Karpach.Remote.Commander\bin\publish\Plugins\" SkipUnchangedFiles="true">
+			<Output
+				TaskParameter="CopiedFiles"
+				ItemName="Changed" />
+		</Copy>
+		<Message Text="Sourcefiles: @(PluginsToCopy)" Importance="high"/>
+		<Message Text="Changed:@(Changed)" Importance="high" />
 	</Target>
 
 </Project>
